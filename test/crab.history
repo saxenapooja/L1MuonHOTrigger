@@ -1,0 +1,11 @@
+141020_150107: /afs/desy.de/group/cms/crab/CRAB_2_10_5_patch1/python/crab.py -create -cfg crab_DESY_Generation.cfg
+141020_150204: /afs/desy.de/group/cms/crab/CRAB_2_10_5_patch1/python/crab.py -submit -c GEN-SIM-DIGI-L1_v1_010813
+141020_151211: /afs/desy.de/group/cms/crab/CRAB_2_10_5_patch1/python/crab.py -status -c GEN-SIM-DIGI-L1_v1_010813
+141020_151747: /afs/desy.de/group/cms/crab/CRAB_2_10_5_patch1/python/crab.py -create -cfg crab_DESY_Generation-v1.cfg
+141020_151834: /afs/desy.de/group/cms/crab/CRAB_2_10_5_patch1/python/crab.py -submit -c GEN-SIM-DIGI-L1_v2_010813
+141020_224346: /afs/desy.de/group/cms/crab/CRAB_2_10_5_patch1/python/crab.py -status -c GEN-SIM-DIGI-L1_v1_010813
+141020_224459: /afs/desy.de/group/cms/crab/CRAB_2_10_5_patch1/python/crab.py -getoutput -c GEN-SIM-DIGI-L1_v1_010813
+141020_225214: /afs/desy.de/group/cms/crab/CRAB_2_10_5_patch1/python/crab.py -getoutput 213 -c GEN-SIM-DIGI-L1_v1_010813
+141020_225229: /afs/desy.de/group/cms/crab/CRAB_2_10_5_patch1/python/crab.py -uploadLog 213 -c GEN-SIM-DIGI-L1_v1_010813
+141020_225302: /afs/desy.de/group/cms/crab/CRAB_2_10_5_patch1/python/crab.py -uploadLog 211 -c GEN-SIM-DIGI-L1_v1_010813
+141020_225329: /afs/desy.de/group/cms/crab/CRAB_2_10_5_patch1/python/crab.py -uploadLog 112 -c GEN-SIM-DIGI-L1_v1_010813

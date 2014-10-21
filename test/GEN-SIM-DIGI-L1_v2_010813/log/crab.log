@@ -1,0 +1,495 @@
+2014-10-20 15:17:48,074 [DEBUG] 	/afs/desy.de/group/cms/crab/CRAB_2_10_5_patch1/python/crab.py -create -cfg crab_DESY_Generation-v1.cfg
+
+2014-10-20 15:17:48,074 [INFO] 	Version 2.10.5_patch1 running on Mon Oct 20 15:17:48 2014 CET (13:17:48 UTC)
+
+crab. Working options:
+	scheduler           remoteGlidein
+	job type            CMSSW
+	server              OFF
+	working directory   /nfs/dust/cms/user/pooja/scratch/hadron_outer/emulation_HO/CMSSW_7_1_0/src/L1Trigger/L1IntegratedMuonTrigger/test/GEN-SIM-DIGI-L1_v2_010813/
+
+2014-10-20 15:17:48,075 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/desy.de/user/p/pooja/.cms_crab/allowed_releases.conf].
+2014-10-20 15:17:48,075 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger object at 0x9d6690>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x9ad6c8>}, 'logger': <logging.Logger object at 0x9d6690>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/desy.de/user/p/pooja/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2014-10-20 15:17:48,195 [INFO] 	error detecting glite version 
+2014-10-20 15:17:48,201 [INFO] 	error detecting glite version 
+2014-10-20 15:17:48,201 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0x9d6690>, 'conn': <httplib.HTTPSConnection instance at 0x9adea8>}, 'logger': <logging.Logger object at 0x9d6690>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /afs/desy.de/user/p/pooja/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2014-10-20 15:17:48,202 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0x9d6690>, 'conn': <httplib.HTTPSConnection instance at 0x9ad5f0>}, 'logger': <logging.Logger object at 0x9d6690>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /afs/desy.de/user/p/pooja/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2014-10-20 15:17:48,202 [DEBUG] 	Input whitelist: 
+2014-10-20 15:17:48,202 [DEBUG] 	Input blacklist: 
+2014-10-20 15:17:48,202 [DEBUG] 	Converted whitelist: 
+2014-10-20 15:17:48,202 [DEBUG] 	Converted blacklist: 
+2014-10-20 15:17:48,202 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/desy.de/user/p/pooja/.cms_crab/myproxy_server.conf].
+2014-10-20 15:17:48,203 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger object at 0x9d6690>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0xb1ccb0>}, 'logger': <logging.Logger object at 0x9d6690>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/desy.de/user/p/pooja/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2014-10-20 15:17:48,203 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/desy.de/user/p/pooja/.cms_crab/site_black_list.conf].
+2014-10-20 15:17:48,203 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger object at 0x9d6690>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0xb1ccb0>}, 'logger': <logging.Logger object at 0x9d6690>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/desy.de/user/p/pooja/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2014-10-20 15:17:48,204 [DEBUG] 	Enforced black list: TAPE,srm-cms.cern.ch,cmssrm.fnal.gov,T1_FR,T1_RU,T1_TW,cmseos.fnal.gov,cmsdca2.fnal.gov,T2_PK_NCP,T3_US_Vanderbilt_EC2
+ 
+2014-10-20 15:17:51,875 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'cacheduration': 24, 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0x9d6690>, 'conn': <httplib.HTTPSConnection instance at 0xb1cbd8>}, 'logger': <logging.Logger object at 0x9d6690>, 'cacheduration': 24, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /afs/desy.de/user/p/pooja/.cms_sitedbcache (duration 24 hours, max reuse 24.0 hours)
+2014-10-20 15:17:51,937 [DEBUG] 	Linux nafhh-cms06.desy.de 2.6.32-431.29.2.el6.x86_64 #1 SMP Tue Sep 9 13:45:55 CDT 2014 x86_64 x86_64 x86_64 GNU/Linux
+ 
+Used properties:
+Linux nafhh-cms06.desy.de 2.6.32-431.29.2.el6.x86_64 #1 SMP Tue Sep 9 13:45:55 CDT 2014 x86_64 x86_64 x86_64 GNU/Linux
+ 
+Used properties:
+   CMSSW.datasetpath : None
+   CMSSW.dbs_url : http://cmsdbsprod.cern.ch/cms_dbs_prod_global/servlet/DBSServlet
+   CMSSW.number_of_jobs : 250
+   CMSSW.output_file : SingleMuPlus_FlatPt_3to140_eta-1.26to1.26_phi-0.52to0.52_GEN_SIM_DIGI_L1.root
+   CMSSW.pset : particleGunGenSimCrab_pooja.py
+   CMSSW.total_number_of_events : 25000000
+   CRAB.cfg : crab_DESY_Generation-v1.cfg
+   CRAB.create : 
+   CRAB.jobtype : cmssw
+   CRAB.scheduler : remoteGlidein
+   CRAB.use_server : 0
+   USER.check_user_remote_dir : 0
+   USER.copy_data : 1
+   USER.return_data : 0
+   USER.storage_element : T2_DE_DESY
+   USER.ui_working_dir : GEN-SIM-DIGI-L1_v2_010813
+   USER.user_remote_dir : /L1Trigger/HOUpgrade/Generation/v2/
+End of used properties.
+
+2014-10-20 15:17:52,024 [DEBUG] 	CMSSW::__init__
+2014-10-20 15:17:52,025 [DEBUG] 	Scram::Scram() version is 2
+2014-10-20 15:17:52,026 [DEBUG] 	Scram::Scram() arch is slc6_amd64_gcc481
+2014-10-20 15:17:52,026 [DEBUG] 	Downloading file [https://cmssdt.cern.ch/SDT/cgi-bin] to [/afs/desy.de/user/p/pooja/.cms_crab/ReleasesXML?anytype=1].
+2014-10-20 15:17:52,026 [DEBUG] 	Service initialised ({'endpoint': 'https://cmssdt.cern.ch/SDT/cgi-bin', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_crab', 'basepath': '/SDT/cgi-bin/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'https://cmssdt.cern.ch/SDT/cgi-bin', 'timeout': 20, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_crab', 'cacheduration': 0.5, 'host': 'cmssdt.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger object at 0x9d6690>, 'type': 'txt/csv', 'conn': <httplib.HTTPSConnection instance at 0xa16830>}, 'logger': <logging.Logger object at 0x9d6690>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmssdt.cern.ch, basepath: /SDT/cgi-bin/ (text/html)
+	 cache: /afs/desy.de/user/p/pooja/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2014-10-20 15:17:52,075 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0x9d6690>, 'conn': <httplib.HTTPSConnection instance at 0xa167a0>}, 'logger': <logging.Logger object at 0x9d6690>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /afs/desy.de/user/p/pooja/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2014-10-20 15:17:52,076 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0x9d6690>, 'conn': <httplib.HTTPSConnection instance at 0xa167e8>}, 'logger': <logging.Logger object at 0x9d6690>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /afs/desy.de/user/p/pooja/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2014-10-20 15:17:52,076 [DEBUG] 	Input whitelist: 
+2014-10-20 15:17:52,076 [DEBUG] 	Input blacklist: 
+2014-10-20 15:17:52,076 [DEBUG] 	Converted whitelist: 
+2014-10-20 15:17:52,076 [DEBUG] 	Converted blacklist: 
+2014-10-20 15:17:52,076 [DEBUG] 	Job splitting method: NoInput
+2014-10-20 15:17:52,076 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/desy.de/user/p/pooja/.cms_crab/site_black_list.conf].
+2014-10-20 15:17:52,076 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger object at 0x9d6690>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0xc11998>}, 'logger': <logging.Logger object at 0x9d6690>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/desy.de/user/p/pooja/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2014-10-20 15:17:52,076 [DEBUG] 	Enforced black list: ['TAPE', 'srm-cms.cern.ch', 'cmssrm.fnal.gov', 'T1_FR', 'T1_RU', 'T1_TW', 'cmseos.fnal.gov', 'cmsdca2.fnal.gov', 'T2_PK_NCP', 'T3_US_Vanderbilt_EC2'] 
+2014-10-20 15:17:52,077 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0x9d6690>, 'conn': <httplib.HTTPSConnection instance at 0xc11998>}, 'logger': <logging.Logger object at 0x9d6690>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /afs/desy.de/user/p/pooja/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2014-10-20 15:17:52,077 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0x9d6690>, 'conn': <httplib.HTTPSConnection instance at 0xc113f8>}, 'logger': <logging.Logger object at 0x9d6690>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /afs/desy.de/user/p/pooja/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2014-10-20 15:17:52,077 [DEBUG] 	Input whitelist: 
+2014-10-20 15:17:52,077 [DEBUG] 	Input blacklist: TAPE, srm-cms.cern.ch, cmssrm.fnal.gov, T1_FR, T1_RU, T1_TW, cmseos.fnal.gov, cmsdca2.fnal.gov, T2_PK_NCP, T3_US_Vanderbilt_EC2
+2014-10-20 15:17:52,106 [DEBUG] 	Converted whitelist: 
+2014-10-20 15:17:52,106 [DEBUG] 	Converted blacklist: pcncp22.ncp.edu.pk, brazil.accre.vanderbilt.edu, srm-cms-mss.jinr-t1.ru, srm-cms.cern.ch, cmssrm.fnal.gov, srm-cms.jinr-t1.ru, cmseos.fnal.gov, ccsrm.in2p3.fr, TAPE, cmsdca2.fnal.gov, srm2.grid.sinica.edu.tw
+2014-10-20 15:17:52,106 [INFO] 	SE black list applied to data location: ['TAPE', 'srm-cms.cern.ch', 'cmssrm.fnal.gov', 'T1_FR', 'T1_RU', 'T1_TW', 'cmseos.fnal.gov', 'cmsdca2.fnal.gov', 'T2_PK_NCP', 'T3_US_Vanderbilt_EC2']
+2014-10-20 15:17:52,106 [DEBUG] 	List of blocks and used locations (SE):
+2014-10-20 15:17:52,106 [DEBUG] 	Splitting per events
+2014-10-20 15:17:52,106 [INFO] 	Required 250 jobs in total 
+2014-10-20 15:17:52,106 [INFO] 	Required 25000000 events in total 
+2014-10-20 15:17:52,106 [DEBUG] 	N jobs  250
+2014-10-20 15:17:52,106 [DEBUG] 	Check  0
+2014-10-20 15:17:52,106 [INFO] 	250 jobs can be created, each for 100000 for a total of 25000000 events
+2014-10-20 15:17:52,139 [DEBUG] 	PsetManipulator::__init__: PSet file = particleGunGenSimCrab_pooja.py
+2014-10-20 15:17:54,589 [DEBUG] 	lib /nfs/dust/cms/user/pooja/scratch/hadron_outer/emulation_HO/CMSSW_7_1_0/lib to be tarred
+2014-10-20 15:17:55,181 [DEBUG] 	Creator: JobType CMSSW created
+2014-10-20 15:17:55,181 [DEBUG] 	Creator: total # of jobs = 250
+2014-10-20 15:17:55,182 [DEBUG] 	Creator constructor finished
+2014-10-20 15:17:56,605 [DEBUG] 	Creator::run() called
+2014-10-20 15:17:56,606 [DEBUG] 	Scram::Scram() version is 2
+2014-10-20 15:17:56,606 [DEBUG] 	Scram::Scram() arch is slc6_amd64_gcc481
+2014-10-20 15:17:57,766 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'cacheduration': 24, 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0x9d6690>, 'conn': <httplib.HTTPSConnection instance at 0x19099e0>}, 'logger': <logging.Logger object at 0x9d6690>, 'cacheduration': 24, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /afs/desy.de/user/p/pooja/.cms_sitedbcache (duration 24 hours, max reuse 24.0 hours)
+2014-10-20 15:17:58,410 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'cacheduration': 24, 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0x9d6690>, 'conn': <httplib.HTTPSConnection instance at 0x1909680>}, 'logger': <logging.Logger object at 0x9d6690>, 'cacheduration': 24, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /afs/desy.de/user/p/pooja/.cms_sitedbcache (duration 24 hours, max reuse 24.0 hours)
+2014-10-20 15:17:59,046 [INFO] 	Creating 250 jobs, please wait...
+2014-10-20 15:17:59,047 [DEBUG] 	Creation Time: 2.44119620323
+2014-10-20 15:17:59,047 [INFO] 	Total of 250 jobs created.
+
+2014-10-20 15:18:34,935 [DEBUG] 	/afs/desy.de/group/cms/crab/CRAB_2_10_5_patch1/python/crab.py -submit -c GEN-SIM-DIGI-L1_v2_010813
+
+2014-10-20 15:18:34,935 [INFO] 	Version 2.10.5_patch1 running on Mon Oct 20 15:18:34 2014 CET (13:18:34 UTC)
+
+crab. Working options:
+	scheduler           remoteGlidein
+	job type            CMSSW
+	server              OFF
+	working directory   /nfs/dust/cms/user/pooja/scratch/hadron_outer/emulation_HO/CMSSW_7_1_0/src/L1Trigger/L1IntegratedMuonTrigger/test/GEN-SIM-DIGI-L1_v2_010813/
+
+2014-10-20 15:18:34,935 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/desy.de/user/p/pooja/.cms_crab/allowed_releases.conf].
+2014-10-20 15:18:34,935 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger object at 0x81f650>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x7fa638>}, 'logger': <logging.Logger object at 0x81f650>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/desy.de/user/p/pooja/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2014-10-20 15:18:35,018 [INFO] 	error detecting glite version 
+2014-10-20 15:18:35,024 [INFO] 	error detecting glite version 
+2014-10-20 15:18:35,025 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0x81f650>, 'conn': <httplib.HTTPSConnection instance at 0x81b290>}, 'logger': <logging.Logger object at 0x81f650>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /afs/desy.de/user/p/pooja/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2014-10-20 15:18:35,025 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0x81f650>, 'conn': <httplib.HTTPSConnection instance at 0x81b200>}, 'logger': <logging.Logger object at 0x81f650>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /afs/desy.de/user/p/pooja/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2014-10-20 15:18:35,025 [DEBUG] 	Input whitelist: 
+2014-10-20 15:18:35,025 [DEBUG] 	Input blacklist: 
+2014-10-20 15:18:35,026 [DEBUG] 	Converted whitelist: 
+2014-10-20 15:18:35,026 [DEBUG] 	Converted blacklist: 
+2014-10-20 15:18:35,026 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/desy.de/user/p/pooja/.cms_crab/myproxy_server.conf].
+2014-10-20 15:18:35,026 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger object at 0x81f650>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x965c68>}, 'logger': <logging.Logger object at 0x81f650>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/desy.de/user/p/pooja/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2014-10-20 15:18:35,027 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/desy.de/user/p/pooja/.cms_crab/site_black_list.conf].
+2014-10-20 15:18:35,027 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger object at 0x81f650>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x965c68>}, 'logger': <logging.Logger object at 0x81f650>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/desy.de/user/p/pooja/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2014-10-20 15:18:35,027 [DEBUG] 	Enforced black list: TAPE,srm-cms.cern.ch,cmssrm.fnal.gov,T1_FR,T1_RU,T1_TW,cmseos.fnal.gov,cmsdca2.fnal.gov,T2_PK_NCP,T3_US_Vanderbilt_EC2
+ 
+2014-10-20 15:18:37,845 [DEBUG] 	parseRange_ None
+2014-10-20 15:18:37,934 [DEBUG] 	Scram::Scram() version is 2
+2014-10-20 15:18:37,935 [DEBUG] 	Scram::Scram() arch is slc6_amd64_gcc481
+2014-10-20 15:18:38,015 [DEBUG] 	Submitter::run() called
+2014-10-20 15:18:38,094 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0x81f650>, 'conn': <httplib.HTTPSConnection instance at 0xa53050>}, 'logger': <logging.Logger object at 0x81f650>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /afs/desy.de/user/p/pooja/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2014-10-20 15:18:38,094 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0x81f650>, 'conn': <httplib.HTTPSConnection instance at 0xa53128>}, 'logger': <logging.Logger object at 0x81f650>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /afs/desy.de/user/p/pooja/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2014-10-20 15:18:38,094 [DEBUG] 	Input whitelist: 
+2014-10-20 15:18:38,094 [DEBUG] 	Input blacklist: 
+2014-10-20 15:18:38,095 [DEBUG] 	Converted whitelist: 
+2014-10-20 15:18:38,095 [DEBUG] 	Converted blacklist: 
+2014-10-20 15:18:38,095 [DEBUG] 	nsjobs -1
+2014-10-20 15:18:38,095 [DEBUG] 	Total jobs 250
+2014-10-20 15:18:38,177 [DEBUG] 	nj_list [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250]
+2014-10-20 15:18:38,674 [DEBUG] 	GRIDNAME: /C=DE/O=GermanGrid/OU=DESY/CN=Pooja Saxena 
+2014-10-20 15:18:39,024 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'cacheduration': 24, 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0x81f650>, 'conn': <httplib.HTTPSConnection instance at 0x81b4d0>}, 'logger': <logging.Logger object at 0x81f650>, 'cacheduration': 24, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /afs/desy.de/user/p/pooja/.cms_sitedbcache (duration 24 hours, max reuse 24.0 hours)
+2014-10-20 15:18:39,403 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'cacheduration': 24, 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0x81f650>, 'conn': <httplib.HTTPSConnection instance at 0x81b4d0>}, 'logger': <logging.Logger object at 0x81f650>, 'cacheduration': 24, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /afs/desy.de/user/p/pooja/.cms_sitedbcache (duration 24 hours, max reuse 24.0 hours)
+2014-10-20 15:18:39,443 [DEBUG] 	Submission DashBoard Pre-Submission report: {'ApplicationVersion': 'CMSSW_7_1_0', 'taskId': 'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a', 'resubmitter': 'user', 'tool': 'crab', 'vo': 'cms', 'tool_ui': 'nafhh-cms06.desy.de', 'JSToolVersion': '2.10.5_patch1', 'user': 'psaxena', 'scheduler': 'GLIDEIN', 'taskType': 'analysis', 'CMSUser': 'psaxena', 'jobId': 'TaskMeta', 'datasetFull': None, 'exe': 'cmsRun', 'GridName': '/C=DE/O=GermanGrid/OU=DESY/CN=Pooja Saxena', 'SubmissionType': 'direct'}
+2014-10-20 15:18:39,443 [INFO] 	Checking available resources...
+2014-10-20 15:18:39,554 [INFO] 	Found  compatible site(s) for job 1
+2014-10-20 15:18:39,555 [INFO] 	1 blocks of jobs will be submitted
+2014-10-20 15:18:39,555 [DEBUG] 	Delegating proxy 
+2014-10-20 15:18:39,555 [DEBUG] 	Submitting jobs [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250]
+2014-10-20 15:18:39,803 [DEBUG] 	Calling ServerConfig default
+2014-10-20 15:18:39,803 [DEBUG] 	getting serverlist from web
+2014-10-20 15:18:39,803 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/desy.de/user/p/pooja/.cms_crab/AvailableServerList].
+2014-10-20 15:18:39,803 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger object at 0x81f650>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0xe7d368>}, 'logger': <logging.Logger object at 0x81f650>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/desy.de/user/p/pooja/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2014-10-20 15:18:39,804 [DEBUG] 	All avaialble servers: [['cern_vocms20', '2.8.4-', 'remoteGlidein'], ['cern_vocms83', '2.8.4-', 'remoteGlidein'], ['unl_hcc-crabserver', '2.8.4-', 'remoteGlidein'], ['ucsd_submit-4', '2.8.4-', 'remoteGlidein'], ['ucsd_submit-4', '2.8.4-', 'remoteGlidein'], ['ucsd_submit-4', '2.8.4-', 'remoteGlidein'], ['ucsd_submit-6', '2.8.4-', 'remoteGlidein'], ['ucsd_submit-6', '2.8.4-', 'remoteGlidein'], ['ucsd_submit-6', '2.8.4-', 'remoteGlidein']]
+2014-10-20 15:18:39,804 [DEBUG] 	All avaialble servers compatible with 2.10.5_patch1: ['cern_vocms20', 'cern_vocms83', 'unl_hcc-crabserver', 'ucsd_submit-4', 'ucsd_submit-4', 'ucsd_submit-4', 'ucsd_submit-6', 'ucsd_submit-6', 'ucsd_submit-6']
+2014-10-20 15:18:39,804 [DEBUG] 	Avaialble servers: ['cern_vocms20', 'cern_vocms83', 'unl_hcc-crabserver', 'ucsd_submit-4', 'ucsd_submit-4', 'ucsd_submit-4', 'ucsd_submit-6', 'ucsd_submit-6', 'ucsd_submit-6'] choosen: ucsd_submit-4
+2014-10-20 15:18:39,804 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/desy.de/user/p/pooja/.cms_crab/server_ucsd_submit-4.conf].
+2014-10-20 15:18:39,804 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger object at 0x81f650>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0xe7d368>}, 'logger': <logging.Logger object at 0x81f650>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/desy.de/user/p/pooja/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2014-10-20 15:18:39,805 [DEBUG] 	/afs/desy.de/user/p/pooja/.cms_crab/0_GET_server_ucsd_submit-4.conf expired, refreshing cache
+2014-10-20 15:18:39,805 [DEBUG] 	getData: 
+	url: /cms/LCG/crab/config/server_ucsd_submit-4.conf
+	data: {}
+2014-10-20 15:18:39,949 [INFO] 	remotehost from Avail.List = submit-4.t2.ucsd.edu
+2014-10-20 15:18:40,119 [DEBUG] 	Scram::Scram() version is 2
+2014-10-20 15:18:40,119 [DEBUG] 	Scram::Scram() arch is slc6_amd64_gcc481
+2014-10-20 15:18:40,467 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'cacheduration': 24, 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0x81f650>, 'conn': <httplib.HTTPSConnection instance at 0xe9fe18>}, 'logger': <logging.Logger object at 0x81f650>, 'cacheduration': 24, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /afs/desy.de/user/p/pooja/.cms_sitedbcache (duration 24 hours, max reuse 24.0 hours)
+2014-10-20 15:18:40,771 [INFO] 	contacting remote host submit-4.t2.ucsd.edu
+2014-10-20 15:18:41,289 [DEBUG] 	Execute command :
+gsissh  -o ControlMaster=auto -o ControlPath=/tmp/pooja/.ssh/ssh-link--1442346821-submit-4.t2.ucsd.edu -o BatchMode=yes -o StrictHostKeyChecking=no -o ForwardX11=no submit-4.t2.ucsd.edu  "sleep 3600"
+2014-10-20 15:18:41,294 [INFO] 	Establishing gsissh ControlPath. Wait 2 sec ...
+2014-10-20 15:18:43,297 [INFO] 	Establishing gsissh ControlPath. Wait 2 sec ...
+2014-10-20 15:18:45,315 [INFO] 	COPY FILES TO REMOTE HOST
+2014-10-20 15:18:45,315 [DEBUG] 	Execute command :
+gsissh -o ControlMaster=auto -o ControlPath=/tmp/pooja/.ssh/ssh-link--1442346821-submit-4.t2.ucsd.edu -o BatchMode=yes -o StrictHostKeyChecking=no -o ForwardX11=no submit-4.t2.ucsd.edu  mkdir -p psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a
+2014-10-20 15:18:45,762 [DEBUG] 	Status,output= 0,
+2014-10-20 15:18:45,762 [DEBUG] 	Execute command :
+gsiscp -o ControlMaster=auto -o ControlPath=/tmp/pooja/.ssh/ssh-link--1442346821-submit-4.t2.ucsd.edu -o BatchMode=yes -o StrictHostKeyChecking=no -o ForwardX11=no /nfs/dust/cms/user/pooja/scratch/hadron_outer/emulation_HO/CMSSW_7_1_0/src/L1Trigger/L1IntegratedMuonTrigger/test/GEN-SIM-DIGI-L1_v2_010813/share/default.tgz /nfs/dust/cms/user/pooja/scratch/hadron_outer/emulation_HO/CMSSW_7_1_0/src/L1Trigger/L1IntegratedMuonTrigger/test/GEN-SIM-DIGI-L1_v2_010813/share/arguments.xml /nfs/dust/cms/user/pooja/scratch/hadron_outer/emulation_HO/CMSSW_7_1_0/src/L1Trigger/L1IntegratedMuonTrigger/test/GEN-SIM-DIGI-L1_v2_010813/job/CMSSW.sh /nfs/dust/cms/user/pooja/scratch/hadron_outer/emulation_HO/CMSSW_7_1_0/src/L1Trigger/L1IntegratedMuonTrigger/test/GEN-SIM-DIGI-L1_v2_010813/share//psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job250.jdl /tmp/x509up_u23320 submit-4.t2.ucsd.edu:psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a
+2014-10-20 15:18:50,364 [DEBUG] 	Status,output= 0,
+2014-10-20 15:18:50,364 [INFO] 	SUBMIT TO REMOTE GLIDEIN FRONTEND
+2014-10-20 15:18:50,364 [DEBUG] 	Execute command :
+gsissh -o ControlMaster=auto -o ControlPath=/tmp/pooja/.ssh/ssh-link--1442346821-submit-4.t2.ucsd.edu -o BatchMode=yes -o StrictHostKeyChecking=no -o ForwardX11=no submit-4.t2.ucsd.edu "cd psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a;  condor_submit  psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job250.jdl; echo 'CONDOR_SUBMIT-EXIT-STATUS IS' \$?"
+2014-10-20 15:18:56,867 [DEBUG] 	Status,output= 0,Submitting job(s)..........................................................................................................................................................................................................................................................
+250 job(s) submitted to cluster 514171.
+CONDOR_SUBMIT-EXIT-STATUS IS 0
+2014-10-20 15:18:56,872 [DEBUG] 	Returning {u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job66': 'submit-4.t2.ucsd.edu//141020//514171.65', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job67': 'submit-4.t2.ucsd.edu//141020//514171.66', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job64': 'submit-4.t2.ucsd.edu//141020//514171.63', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job65': 'submit-4.t2.ucsd.edu//141020//514171.64', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job62': 'submit-4.t2.ucsd.edu//141020//514171.61', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job63': 'submit-4.t2.ucsd.edu//141020//514171.62', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job60': 'submit-4.t2.ucsd.edu//141020//514171.59', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job61': 'submit-4.t2.ucsd.edu//141020//514171.60', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job68': 'submit-4.t2.ucsd.edu//141020//514171.67', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job69': 'submit-4.t2.ucsd.edu//141020//514171.68', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job171': 'submit-4.t2.ucsd.edu//141020//514171.170', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job170': 'submit-4.t2.ucsd.edu//141020//514171.169', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job173': 'submit-4.t2.ucsd.edu//141020//514171.172', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job172': 'submit-4.t2.ucsd.edu//141020//514171.171', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job175': 'submit-4.t2.ucsd.edu//141020//514171.174', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job174': 'submit-4.t2.ucsd.edu//141020//514171.173', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job177': 'submit-4.t2.ucsd.edu//141020//514171.176', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job176': 'submit-4.t2.ucsd.edu//141020//514171.175', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job179': 'submit-4.t2.ucsd.edu//141020//514171.178', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job178': 'submit-4.t2.ucsd.edu//141020//514171.177', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job212': 'submit-4.t2.ucsd.edu//141020//514171.211', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job213': 'submit-4.t2.ucsd.edu//141020//514171.212', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job214': 'submit-4.t2.ucsd.edu//141020//514171.213', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job215': 'submit-4.t2.ucsd.edu//141020//514171.214', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job216': 'submit-4.t2.ucsd.edu//141020//514171.215', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job217': 'submit-4.t2.ucsd.edu//141020//514171.216', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job75': 'submit-4.t2.ucsd.edu//141020//514171.74', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job74': 'submit-4.t2.ucsd.edu//141020//514171.73', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job77': 'submit-4.t2.ucsd.edu//141020//514171.76', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job76': 'submit-4.t2.ucsd.edu//141020//514171.75', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job71': 'submit-4.t2.ucsd.edu//141020//514171.70', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job70': 'submit-4.t2.ucsd.edu//141020//514171.69', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job73': 'submit-4.t2.ucsd.edu//141020//514171.72', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job72': 'submit-4.t2.ucsd.edu//141020//514171.71', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job79': 'submit-4.t2.ucsd.edu//141020//514171.78', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job78': 'submit-4.t2.ucsd.edu//141020//514171.77', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job203': 'submit-4.t2.ucsd.edu//141020//514171.202', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job202': 'submit-4.t2.ucsd.edu//141020//514171.201', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job201': 'submit-4.t2.ucsd.edu//141020//514171.200', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job200': 'submit-4.t2.ucsd.edu//141020//514171.199', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job207': 'submit-4.t2.ucsd.edu//141020//514171.206', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job206': 'submit-4.t2.ucsd.edu//141020//514171.205', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job205': 'submit-4.t2.ucsd.edu//141020//514171.204', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job204': 'submit-4.t2.ucsd.edu//141020//514171.203', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job209': 'submit-4.t2.ucsd.edu//141020//514171.208', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job208': 'submit-4.t2.ucsd.edu//141020//514171.207', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job40': 'submit-4.t2.ucsd.edu//141020//514171.39', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job41': 'submit-4.t2.ucsd.edu//141020//514171.40', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job42': 'submit-4.t2.ucsd.edu//141020//514171.41', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job43': 'submit-4.t2.ucsd.edu//141020//514171.42', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job44': 'submit-4.t2.ucsd.edu//141020//514171.43', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job45': 'submit-4.t2.ucsd.edu//141020//514171.44', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job46': 'submit-4.t2.ucsd.edu//141020//514171.45', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job47': 'submit-4.t2.ucsd.edu//141020//514171.46', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job48': 'submit-4.t2.ucsd.edu//141020//514171.47', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job49': 'submit-4.t2.ucsd.edu//141020//514171.48', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job164': 'submit-4.t2.ucsd.edu//141020//514171.163', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job165': 'submit-4.t2.ucsd.edu//141020//514171.164', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job162': 'submit-4.t2.ucsd.edu//141020//514171.161', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job163': 'submit-4.t2.ucsd.edu//141020//514171.162', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job160': 'submit-4.t2.ucsd.edu//141020//514171.159', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job161': 'submit-4.t2.ucsd.edu//141020//514171.160', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job154': 'submit-4.t2.ucsd.edu//141020//514171.153', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job193': 'submit-4.t2.ucsd.edu//141020//514171.192', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job192': 'submit-4.t2.ucsd.edu//141020//514171.191', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job191': 'submit-4.t2.ucsd.edu//141020//514171.190', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job190': 'submit-4.t2.ucsd.edu//141020//514171.189', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job197': 'submit-4.t2.ucsd.edu//141020//514171.196', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job196': 'submit-4.t2.ucsd.edu//141020//514171.195', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job195': 'submit-4.t2.ucsd.edu//141020//514171.194', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job194': 'submit-4.t2.ucsd.edu//141020//514171.193', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job218': 'submit-4.t2.ucsd.edu//141020//514171.217', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job219': 'submit-4.t2.ucsd.edu//141020//514171.218', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job199': 'submit-4.t2.ucsd.edu//141020//514171.198', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job198': 'submit-4.t2.ucsd.edu//141020//514171.197', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job249': 'submit-4.t2.ucsd.edu//141020//514171.248', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job59': 'submit-4.t2.ucsd.edu//141020//514171.58', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job58': 'submit-4.t2.ucsd.edu//141020//514171.57', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job57': 'submit-4.t2.ucsd.edu//141020//514171.56', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job56': 'submit-4.t2.ucsd.edu//141020//514171.55', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job55': 'submit-4.t2.ucsd.edu//141020//514171.54', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job54': 'submit-4.t2.ucsd.edu//141020//514171.53', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job53': 'submit-4.t2.ucsd.edu//141020//514171.52', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job52': 'submit-4.t2.ucsd.edu//141020//514171.51', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job51': 'submit-4.t2.ucsd.edu//141020//514171.50', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job50': 'submit-4.t2.ucsd.edu//141020//514171.49', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job119': 'submit-4.t2.ucsd.edu//141020//514171.118', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job118': 'submit-4.t2.ucsd.edu//141020//514171.117', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job246': 'submit-4.t2.ucsd.edu//141020//514171.245', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job113': 'submit-4.t2.ucsd.edu//141020//514171.112', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job112': 'submit-4.t2.ucsd.edu//141020//514171.111', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job111': 'submit-4.t2.ucsd.edu//141020//514171.110', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job110': 'submit-4.t2.ucsd.edu//141020//514171.109', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job117': 'submit-4.t2.ucsd.edu//141020//514171.116', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job116': 'submit-4.t2.ucsd.edu//141020//514171.115', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job115': 'submit-4.t2.ucsd.edu//141020//514171.114', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job114': 'submit-4.t2.ucsd.edu//141020//514171.113', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job244': 'submit-4.t2.ucsd.edu//141020//514171.243', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job229': 'submit-4.t2.ucsd.edu//141020//514171.228', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job228': 'submit-4.t2.ucsd.edu//141020//514171.227', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job225': 'submit-4.t2.ucsd.edu//141020//514171.224', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job224': 'submit-4.t2.ucsd.edu//141020//514171.223', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job227': 'submit-4.t2.ucsd.edu//141020//514171.226', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job226': 'submit-4.t2.ucsd.edu//141020//514171.225', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job221': 'submit-4.t2.ucsd.edu//141020//514171.220', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job220': 'submit-4.t2.ucsd.edu//141020//514171.219', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job223': 'submit-4.t2.ucsd.edu//141020//514171.222', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job222': 'submit-4.t2.ucsd.edu//141020//514171.221', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job180': 'submit-4.t2.ucsd.edu//141020//514171.179', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job181': 'submit-4.t2.ucsd.edu//141020//514171.180', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job182': 'submit-4.t2.ucsd.edu//141020//514171.181', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job183': 'submit-4.t2.ucsd.edu//141020//514171.182', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job184': 'submit-4.t2.ucsd.edu//141020//514171.183', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job185': 'submit-4.t2.ucsd.edu//141020//514171.184', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job186': 'submit-4.t2.ucsd.edu//141020//514171.185', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job187': 'submit-4.t2.ucsd.edu//141020//514171.186', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job188': 'submit-4.t2.ucsd.edu//141020//514171.187', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job189': 'submit-4.t2.ucsd.edu//141020//514171.188', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job240': 'submit-4.t2.ucsd.edu//141020//514171.239', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job28': 'submit-4.t2.ucsd.edu//141020//514171.27', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job29': 'submit-4.t2.ucsd.edu//141020//514171.28', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job22': 'submit-4.t2.ucsd.edu//141020//514171.21', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job23': 'submit-4.t2.ucsd.edu//141020//514171.22', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job20': 'submit-4.t2.ucsd.edu//141020//514171.19', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job21': 'submit-4.t2.ucsd.edu//141020//514171.20', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job26': 'submit-4.t2.ucsd.edu//141020//514171.25', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job27': 'submit-4.t2.ucsd.edu//141020//514171.26', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job24': 'submit-4.t2.ucsd.edu//141020//514171.23', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job25': 'submit-4.t2.ucsd.edu//141020//514171.24', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job108': 'submit-4.t2.ucsd.edu//141020//514171.107', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job109': 'submit-4.t2.ucsd.edu//141020//514171.108', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job100': 'submit-4.t2.ucsd.edu//141020//514171.99', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job101': 'submit-4.t2.ucsd.edu//141020//514171.100', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job102': 'submit-4.t2.ucsd.edu//141020//514171.101', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job103': 'submit-4.t2.ucsd.edu//141020//514171.102', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job104': 'submit-4.t2.ucsd.edu//141020//514171.103', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job105': 'submit-4.t2.ucsd.edu//141020//514171.104', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job106': 'submit-4.t2.ucsd.edu//141020//514171.105', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job107': 'submit-4.t2.ucsd.edu//141020//514171.106', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job238': 'submit-4.t2.ucsd.edu//141020//514171.237', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job239': 'submit-4.t2.ucsd.edu//141020//514171.238', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job232': 'submit-4.t2.ucsd.edu//141020//514171.231', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job233': 'submit-4.t2.ucsd.edu//141020//514171.232', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job230': 'submit-4.t2.ucsd.edu//141020//514171.229', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job231': 'submit-4.t2.ucsd.edu//141020//514171.230', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job236': 'submit-4.t2.ucsd.edu//141020//514171.235', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job237': 'submit-4.t2.ucsd.edu//141020//514171.236', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job234': 'submit-4.t2.ucsd.edu//141020//514171.233', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job235': 'submit-4.t2.ucsd.edu//141020//514171.234', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job39': 'submit-4.t2.ucsd.edu//141020//514171.38', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job38': 'submit-4.t2.ucsd.edu//141020//514171.37', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job31': 'submit-4.t2.ucsd.edu//141020//514171.30', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job30': 'submit-4.t2.ucsd.edu//141020//514171.29', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job33': 'submit-4.t2.ucsd.edu//141020//514171.32', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job32': 'submit-4.t2.ucsd.edu//141020//514171.31', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job35': 'submit-4.t2.ucsd.edu//141020//514171.34', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job34': 'submit-4.t2.ucsd.edu//141020//514171.33', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job37': 'submit-4.t2.ucsd.edu//141020//514171.36', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job36': 'submit-4.t2.ucsd.edu//141020//514171.35', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job135': 'submit-4.t2.ucsd.edu//141020//514171.134', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job134': 'submit-4.t2.ucsd.edu//141020//514171.133', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job137': 'submit-4.t2.ucsd.edu//141020//514171.136', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job136': 'submit-4.t2.ucsd.edu//141020//514171.135', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job131': 'submit-4.t2.ucsd.edu//141020//514171.130', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job130': 'submit-4.t2.ucsd.edu//141020//514171.129', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job133': 'submit-4.t2.ucsd.edu//141020//514171.132', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job132': 'submit-4.t2.ucsd.edu//141020//514171.131', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job139': 'submit-4.t2.ucsd.edu//141020//514171.138', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job138': 'submit-4.t2.ucsd.edu//141020//514171.137', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job3': 'submit-4.t2.ucsd.edu//141020//514171.2', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job2': 'submit-4.t2.ucsd.edu//141020//514171.1', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job1': 'submit-4.t2.ucsd.edu//141020//514171.0', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job7': 'submit-4.t2.ucsd.edu//141020//514171.6', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job6': 'submit-4.t2.ucsd.edu//141020//514171.5', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job5': 'submit-4.t2.ucsd.edu//141020//514171.4', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job4': 'submit-4.t2.ucsd.edu//141020//514171.3', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job247': 'submit-4.t2.ucsd.edu//141020//514171.246', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job126': 'submit-4.t2.ucsd.edu//141020//514171.125', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job9': 'submit-4.t2.ucsd.edu//141020//514171.8', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job8': 'submit-4.t2.ucsd.edu//141020//514171.7', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job243': 'submit-4.t2.ucsd.edu//141020//514171.242', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job242': 'submit-4.t2.ucsd.edu//141020//514171.241', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job241': 'submit-4.t2.ucsd.edu//141020//514171.240', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job127': 'submit-4.t2.ucsd.edu//141020//514171.126', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job168': 'submit-4.t2.ucsd.edu//141020//514171.167', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job169': 'submit-4.t2.ucsd.edu//141020//514171.168', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job210': 'submit-4.t2.ucsd.edu//141020//514171.209', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job122': 'submit-4.t2.ucsd.edu//141020//514171.121', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job123': 'submit-4.t2.ucsd.edu//141020//514171.122', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job120': 'submit-4.t2.ucsd.edu//141020//514171.119', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job121': 'submit-4.t2.ucsd.edu//141020//514171.120', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job88': 'submit-4.t2.ucsd.edu//141020//514171.87', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job89': 'submit-4.t2.ucsd.edu//141020//514171.88', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job124': 'submit-4.t2.ucsd.edu//141020//514171.123', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job125': 'submit-4.t2.ucsd.edu//141020//514171.124', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job84': 'submit-4.t2.ucsd.edu//141020//514171.83', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job85': 'submit-4.t2.ucsd.edu//141020//514171.84', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job86': 'submit-4.t2.ucsd.edu//141020//514171.85', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job87': 'submit-4.t2.ucsd.edu//141020//514171.86', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job80': 'submit-4.t2.ucsd.edu//141020//514171.79', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job81': 'submit-4.t2.ucsd.edu//141020//514171.80', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job82': 'submit-4.t2.ucsd.edu//141020//514171.81', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job83': 'submit-4.t2.ucsd.edu//141020//514171.82', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job157': 'submit-4.t2.ucsd.edu//141020//514171.156', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job156': 'submit-4.t2.ucsd.edu//141020//514171.155', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job155': 'submit-4.t2.ucsd.edu//141020//514171.154', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job129': 'submit-4.t2.ucsd.edu//141020//514171.128', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job153': 'submit-4.t2.ucsd.edu//141020//514171.152', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job152': 'submit-4.t2.ucsd.edu//141020//514171.151', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job151': 'submit-4.t2.ucsd.edu//141020//514171.150', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job150': 'submit-4.t2.ucsd.edu//141020//514171.149', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job245': 'submit-4.t2.ucsd.edu//141020//514171.244', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job159': 'submit-4.t2.ucsd.edu//141020//514171.158', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job158': 'submit-4.t2.ucsd.edu//141020//514171.157', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job128': 'submit-4.t2.ucsd.edu//141020//514171.127', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job167': 'submit-4.t2.ucsd.edu//141020//514171.166', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job250': 'submit-4.t2.ucsd.edu//141020//514171.249', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job13': 'submit-4.t2.ucsd.edu//141020//514171.12', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job12': 'submit-4.t2.ucsd.edu//141020//514171.11', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job11': 'submit-4.t2.ucsd.edu//141020//514171.10', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job10': 'submit-4.t2.ucsd.edu//141020//514171.9', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job17': 'submit-4.t2.ucsd.edu//141020//514171.16', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job16': 'submit-4.t2.ucsd.edu//141020//514171.15', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job15': 'submit-4.t2.ucsd.edu//141020//514171.14', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job14': 'submit-4.t2.ucsd.edu//141020//514171.13', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job19': 'submit-4.t2.ucsd.edu//141020//514171.18', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job18': 'submit-4.t2.ucsd.edu//141020//514171.17', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job248': 'submit-4.t2.ucsd.edu//141020//514171.247', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job99': 'submit-4.t2.ucsd.edu//141020//514171.98', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job98': 'submit-4.t2.ucsd.edu//141020//514171.97', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job93': 'submit-4.t2.ucsd.edu//141020//514171.92', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job92': 'submit-4.t2.ucsd.edu//141020//514171.91', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job91': 'submit-4.t2.ucsd.edu//141020//514171.90', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job90': 'submit-4.t2.ucsd.edu//141020//514171.89', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job97': 'submit-4.t2.ucsd.edu//141020//514171.96', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job96': 'submit-4.t2.ucsd.edu//141020//514171.95', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job95': 'submit-4.t2.ucsd.edu//141020//514171.94', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job94': 'submit-4.t2.ucsd.edu//141020//514171.93', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job144': 'submit-4.t2.ucsd.edu//141020//514171.143', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job145': 'submit-4.t2.ucsd.edu//141020//514171.144', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job146': 'submit-4.t2.ucsd.edu//141020//514171.145', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job147': 'submit-4.t2.ucsd.edu//141020//514171.146', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job140': 'submit-4.t2.ucsd.edu//141020//514171.139', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job141': 'submit-4.t2.ucsd.edu//141020//514171.140', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job142': 'submit-4.t2.ucsd.edu//141020//514171.141', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job143': 'submit-4.t2.ucsd.edu//141020//514171.142', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job148': 'submit-4.t2.ucsd.edu//141020//514171.147', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job149': 'submit-4.t2.ucsd.edu//141020//514171.148', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job166': 'submit-4.t2.ucsd.edu//141020//514171.165', u'psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a_job211': 'submit-4.t2.ucsd.edu//141020//514171.210'}
+psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a
+nafhh-cms06.desy.de
+2014-10-20 15:18:56,983 [DEBUG] 	WMS : nafhh-cms06.desy.de
+Collection ID : psaxena_GEN-SIM-DIGI-L1_v2_010813_o5s94a
+2014-10-20 15:18:57,056 [DEBUG] 	Submitted job # 1
+2014-10-20 15:18:57,056 [DEBUG] 	Submitted job # 2
+2014-10-20 15:18:57,056 [DEBUG] 	Submitted job # 3
+2014-10-20 15:18:57,056 [DEBUG] 	Submitted job # 4
+2014-10-20 15:18:57,056 [DEBUG] 	Submitted job # 5
+2014-10-20 15:18:57,056 [DEBUG] 	Submitted job # 6
+2014-10-20 15:18:57,056 [DEBUG] 	Submitted job # 7
+2014-10-20 15:18:57,056 [DEBUG] 	Submitted job # 8
+2014-10-20 15:18:57,056 [DEBUG] 	Submitted job # 9
+2014-10-20 15:18:57,056 [DEBUG] 	Submitted job # 10
+2014-10-20 15:18:57,056 [DEBUG] 	Submitted job # 11
+2014-10-20 15:18:57,057 [DEBUG] 	Submitted job # 12
+2014-10-20 15:18:57,057 [DEBUG] 	Submitted job # 13
+2014-10-20 15:18:57,057 [DEBUG] 	Submitted job # 14
+2014-10-20 15:18:57,057 [DEBUG] 	Submitted job # 15
+2014-10-20 15:18:57,057 [DEBUG] 	Submitted job # 16
+2014-10-20 15:18:57,057 [DEBUG] 	Submitted job # 17
+2014-10-20 15:18:57,057 [DEBUG] 	Submitted job # 18
+2014-10-20 15:18:57,057 [DEBUG] 	Submitted job # 19
+2014-10-20 15:18:57,057 [DEBUG] 	Submitted job # 20
+2014-10-20 15:18:57,057 [DEBUG] 	Submitted job # 21
+2014-10-20 15:18:57,057 [DEBUG] 	Submitted job # 22
+2014-10-20 15:18:57,057 [DEBUG] 	Submitted job # 23
+2014-10-20 15:18:57,057 [DEBUG] 	Submitted job # 24
+2014-10-20 15:18:57,057 [DEBUG] 	Submitted job # 25
+2014-10-20 15:18:57,057 [DEBUG] 	Submitted job # 26
+2014-10-20 15:18:57,057 [DEBUG] 	Submitted job # 27
+2014-10-20 15:18:57,057 [DEBUG] 	Submitted job # 28
+2014-10-20 15:18:57,058 [DEBUG] 	Submitted job # 29
+2014-10-20 15:18:57,058 [DEBUG] 	Submitted job # 30
+2014-10-20 15:18:57,058 [DEBUG] 	Submitted job # 31
+2014-10-20 15:18:57,058 [DEBUG] 	Submitted job # 32
+2014-10-20 15:18:57,058 [DEBUG] 	Submitted job # 33
+2014-10-20 15:18:57,058 [DEBUG] 	Submitted job # 34
+2014-10-20 15:18:57,058 [DEBUG] 	Submitted job # 35
+2014-10-20 15:18:57,058 [DEBUG] 	Submitted job # 36
+2014-10-20 15:18:57,058 [DEBUG] 	Submitted job # 37
+2014-10-20 15:18:57,058 [DEBUG] 	Submitted job # 38
+2014-10-20 15:18:57,058 [DEBUG] 	Submitted job # 39
+2014-10-20 15:18:57,058 [DEBUG] 	Submitted job # 40
+2014-10-20 15:18:57,058 [DEBUG] 	Submitted job # 41
+2014-10-20 15:18:57,058 [DEBUG] 	Submitted job # 42
+2014-10-20 15:18:57,058 [DEBUG] 	Submitted job # 43
+2014-10-20 15:18:57,058 [DEBUG] 	Submitted job # 44
+2014-10-20 15:18:57,059 [DEBUG] 	Submitted job # 45
+2014-10-20 15:18:57,059 [DEBUG] 	Submitted job # 46
+2014-10-20 15:18:57,059 [DEBUG] 	Submitted job # 47
+2014-10-20 15:18:57,059 [DEBUG] 	Submitted job # 48
+2014-10-20 15:18:57,059 [DEBUG] 	Submitted job # 49
+2014-10-20 15:18:57,059 [DEBUG] 	Submitted job # 50
+2014-10-20 15:18:57,059 [DEBUG] 	Submitted job # 51
+2014-10-20 15:18:57,059 [DEBUG] 	Submitted job # 52
+2014-10-20 15:18:57,059 [DEBUG] 	Submitted job # 53
+2014-10-20 15:18:57,059 [DEBUG] 	Submitted job # 54
+2014-10-20 15:18:57,059 [DEBUG] 	Submitted job # 55
+2014-10-20 15:18:57,059 [DEBUG] 	Submitted job # 56
+2014-10-20 15:18:57,059 [DEBUG] 	Submitted job # 57
+2014-10-20 15:18:57,059 [DEBUG] 	Submitted job # 58
+2014-10-20 15:18:57,059 [DEBUG] 	Submitted job # 59
+2014-10-20 15:18:57,059 [DEBUG] 	Submitted job # 60
+2014-10-20 15:18:57,059 [DEBUG] 	Submitted job # 61
+2014-10-20 15:18:57,060 [DEBUG] 	Submitted job # 62
+2014-10-20 15:18:57,060 [DEBUG] 	Submitted job # 63
+2014-10-20 15:18:57,060 [DEBUG] 	Submitted job # 64
+2014-10-20 15:18:57,060 [DEBUG] 	Submitted job # 65
+2014-10-20 15:18:57,060 [DEBUG] 	Submitted job # 66
+2014-10-20 15:18:57,060 [DEBUG] 	Submitted job # 67
+2014-10-20 15:18:57,060 [DEBUG] 	Submitted job # 68
+2014-10-20 15:18:57,060 [DEBUG] 	Submitted job # 69
+2014-10-20 15:18:57,060 [DEBUG] 	Submitted job # 70
+2014-10-20 15:18:57,060 [DEBUG] 	Submitted job # 71
+2014-10-20 15:18:57,060 [DEBUG] 	Submitted job # 72
+2014-10-20 15:18:57,060 [DEBUG] 	Submitted job # 73
+2014-10-20 15:18:57,060 [DEBUG] 	Submitted job # 74
+2014-10-20 15:18:57,060 [DEBUG] 	Submitted job # 75
+2014-10-20 15:18:57,060 [DEBUG] 	Submitted job # 76
+2014-10-20 15:18:57,060 [DEBUG] 	Submitted job # 77
+2014-10-20 15:18:57,061 [DEBUG] 	Submitted job # 78
+2014-10-20 15:18:57,061 [DEBUG] 	Submitted job # 79
+2014-10-20 15:18:57,061 [DEBUG] 	Submitted job # 80
+2014-10-20 15:18:57,061 [DEBUG] 	Submitted job # 81
+2014-10-20 15:18:57,061 [DEBUG] 	Submitted job # 82
+2014-10-20 15:18:57,061 [DEBUG] 	Submitted job # 83
+2014-10-20 15:18:57,061 [DEBUG] 	Submitted job # 84
+2014-10-20 15:18:57,061 [DEBUG] 	Submitted job # 85
+2014-10-20 15:18:57,061 [DEBUG] 	Submitted job # 86
+2014-10-20 15:18:57,061 [DEBUG] 	Submitted job # 87
+2014-10-20 15:18:57,061 [DEBUG] 	Submitted job # 88
+2014-10-20 15:18:57,061 [DEBUG] 	Submitted job # 89
+2014-10-20 15:18:57,061 [DEBUG] 	Submitted job # 90
+2014-10-20 15:18:57,061 [DEBUG] 	Submitted job # 91
+2014-10-20 15:18:57,061 [DEBUG] 	Submitted job # 92
+2014-10-20 15:18:57,061 [DEBUG] 	Submitted job # 93
+2014-10-20 15:18:57,061 [DEBUG] 	Submitted job # 94
+2014-10-20 15:18:57,062 [DEBUG] 	Submitted job # 95
+2014-10-20 15:18:57,062 [DEBUG] 	Submitted job # 96
+2014-10-20 15:18:57,062 [DEBUG] 	Submitted job # 97
+2014-10-20 15:18:57,062 [DEBUG] 	Submitted job # 98
+2014-10-20 15:18:57,062 [DEBUG] 	Submitted job # 99
+2014-10-20 15:18:57,062 [DEBUG] 	Submitted job # 100
+2014-10-20 15:18:57,062 [DEBUG] 	Submitted job # 101
+2014-10-20 15:18:57,062 [DEBUG] 	Submitted job # 102
+2014-10-20 15:18:57,062 [DEBUG] 	Submitted job # 103
+2014-10-20 15:18:57,062 [DEBUG] 	Submitted job # 104
+2014-10-20 15:18:57,062 [DEBUG] 	Submitted job # 105
+2014-10-20 15:18:57,062 [DEBUG] 	Submitted job # 106
+2014-10-20 15:18:57,062 [DEBUG] 	Submitted job # 107
+2014-10-20 15:18:57,062 [DEBUG] 	Submitted job # 108
+2014-10-20 15:18:57,062 [DEBUG] 	Submitted job # 109
+2014-10-20 15:18:57,062 [DEBUG] 	Submitted job # 110
+2014-10-20 15:18:57,062 [DEBUG] 	Submitted job # 111
+2014-10-20 15:18:57,063 [DEBUG] 	Submitted job # 112
+2014-10-20 15:18:57,063 [DEBUG] 	Submitted job # 113
+2014-10-20 15:18:57,063 [DEBUG] 	Submitted job # 114
+2014-10-20 15:18:57,063 [DEBUG] 	Submitted job # 115
+2014-10-20 15:18:57,063 [DEBUG] 	Submitted job # 116
+2014-10-20 15:18:57,063 [DEBUG] 	Submitted job # 117
+2014-10-20 15:18:57,063 [DEBUG] 	Submitted job # 118
+2014-10-20 15:18:57,063 [DEBUG] 	Submitted job # 119
+2014-10-20 15:18:57,063 [DEBUG] 	Submitted job # 120
+2014-10-20 15:18:57,063 [DEBUG] 	Submitted job # 121
+2014-10-20 15:18:57,063 [DEBUG] 	Submitted job # 122
+2014-10-20 15:18:57,063 [DEBUG] 	Submitted job # 123
+2014-10-20 15:18:57,063 [DEBUG] 	Submitted job # 124
+2014-10-20 15:18:57,063 [DEBUG] 	Submitted job # 125
+2014-10-20 15:18:57,063 [DEBUG] 	Submitted job # 126
+2014-10-20 15:18:57,063 [DEBUG] 	Submitted job # 127
+2014-10-20 15:18:57,064 [DEBUG] 	Submitted job # 128
+2014-10-20 15:18:57,064 [DEBUG] 	Submitted job # 129
+2014-10-20 15:18:57,064 [DEBUG] 	Submitted job # 130
+2014-10-20 15:18:57,064 [DEBUG] 	Submitted job # 131
+2014-10-20 15:18:57,064 [DEBUG] 	Submitted job # 132
+2014-10-20 15:18:57,064 [DEBUG] 	Submitted job # 133
+2014-10-20 15:18:57,064 [DEBUG] 	Submitted job # 134
+2014-10-20 15:18:57,064 [DEBUG] 	Submitted job # 135
+2014-10-20 15:18:57,064 [DEBUG] 	Submitted job # 136
+2014-10-20 15:18:57,064 [DEBUG] 	Submitted job # 137
+2014-10-20 15:18:57,064 [DEBUG] 	Submitted job # 138
+2014-10-20 15:18:57,064 [DEBUG] 	Submitted job # 139
+2014-10-20 15:18:57,064 [DEBUG] 	Submitted job # 140
+2014-10-20 15:18:57,064 [DEBUG] 	Submitted job # 141
+2014-10-20 15:18:57,064 [DEBUG] 	Submitted job # 142
+2014-10-20 15:18:57,064 [DEBUG] 	Submitted job # 143
+2014-10-20 15:18:57,064 [DEBUG] 	Submitted job # 144
+2014-10-20 15:18:57,065 [DEBUG] 	Submitted job # 145
+2014-10-20 15:18:57,065 [DEBUG] 	Submitted job # 146
+2014-10-20 15:18:57,065 [DEBUG] 	Submitted job # 147
+2014-10-20 15:18:57,065 [DEBUG] 	Submitted job # 148
+2014-10-20 15:18:57,065 [DEBUG] 	Submitted job # 149
+2014-10-20 15:18:57,065 [DEBUG] 	Submitted job # 150
+2014-10-20 15:18:57,065 [DEBUG] 	Submitted job # 151
+2014-10-20 15:18:57,065 [DEBUG] 	Submitted job # 152
+2014-10-20 15:18:57,065 [DEBUG] 	Submitted job # 153
+2014-10-20 15:18:57,065 [DEBUG] 	Submitted job # 154
+2014-10-20 15:18:57,065 [DEBUG] 	Submitted job # 155
+2014-10-20 15:18:57,065 [DEBUG] 	Submitted job # 156
+2014-10-20 15:18:57,065 [DEBUG] 	Submitted job # 157
+2014-10-20 15:18:57,065 [DEBUG] 	Submitted job # 158
+2014-10-20 15:18:57,065 [DEBUG] 	Submitted job # 159
+2014-10-20 15:18:57,065 [DEBUG] 	Submitted job # 160
+2014-10-20 15:18:57,065 [DEBUG] 	Submitted job # 161
+2014-10-20 15:18:57,066 [DEBUG] 	Submitted job # 162
+2014-10-20 15:18:57,066 [DEBUG] 	Submitted job # 163
+2014-10-20 15:18:57,066 [DEBUG] 	Submitted job # 164
+2014-10-20 15:18:57,066 [DEBUG] 	Submitted job # 165
+2014-10-20 15:18:57,066 [DEBUG] 	Submitted job # 166
+2014-10-20 15:18:57,066 [DEBUG] 	Submitted job # 167
+2014-10-20 15:18:57,066 [DEBUG] 	Submitted job # 168
+2014-10-20 15:18:57,066 [DEBUG] 	Submitted job # 169
+2014-10-20 15:18:57,066 [DEBUG] 	Submitted job # 170
+2014-10-20 15:18:57,066 [DEBUG] 	Submitted job # 171
+2014-10-20 15:18:57,066 [DEBUG] 	Submitted job # 172
+2014-10-20 15:18:57,066 [DEBUG] 	Submitted job # 173
+2014-10-20 15:18:57,066 [DEBUG] 	Submitted job # 174
+2014-10-20 15:18:57,066 [DEBUG] 	Submitted job # 175
+2014-10-20 15:18:57,066 [DEBUG] 	Submitted job # 176
+2014-10-20 15:18:57,066 [DEBUG] 	Submitted job # 177
+2014-10-20 15:18:57,067 [DEBUG] 	Submitted job # 178
+2014-10-20 15:18:57,067 [DEBUG] 	Submitted job # 179
+2014-10-20 15:18:57,067 [DEBUG] 	Submitted job # 180
+2014-10-20 15:18:57,067 [DEBUG] 	Submitted job # 181
+2014-10-20 15:18:57,067 [DEBUG] 	Submitted job # 182
+2014-10-20 15:18:57,067 [DEBUG] 	Submitted job # 183
+2014-10-20 15:18:57,067 [DEBUG] 	Submitted job # 184
+2014-10-20 15:18:57,067 [DEBUG] 	Submitted job # 185
+2014-10-20 15:18:57,067 [DEBUG] 	Submitted job # 186
+2014-10-20 15:18:57,067 [DEBUG] 	Submitted job # 187
+2014-10-20 15:18:57,067 [DEBUG] 	Submitted job # 188
+2014-10-20 15:18:57,067 [DEBUG] 	Submitted job # 189
+2014-10-20 15:18:57,067 [DEBUG] 	Submitted job # 190
+2014-10-20 15:18:57,067 [DEBUG] 	Submitted job # 191
+2014-10-20 15:18:57,067 [DEBUG] 	Submitted job # 192
+2014-10-20 15:18:57,067 [DEBUG] 	Submitted job # 193
+2014-10-20 15:18:57,067 [DEBUG] 	Submitted job # 194
+2014-10-20 15:18:57,068 [DEBUG] 	Submitted job # 195
+2014-10-20 15:18:57,068 [DEBUG] 	Submitted job # 196
+2014-10-20 15:18:57,068 [DEBUG] 	Submitted job # 197
+2014-10-20 15:18:57,068 [DEBUG] 	Submitted job # 198
+2014-10-20 15:18:57,068 [DEBUG] 	Submitted job # 199
+2014-10-20 15:18:57,068 [DEBUG] 	Submitted job # 200
+2014-10-20 15:18:57,068 [DEBUG] 	Submitted job # 201
+2014-10-20 15:18:57,068 [DEBUG] 	Submitted job # 202
+2014-10-20 15:18:57,068 [DEBUG] 	Submitted job # 203
+2014-10-20 15:18:57,068 [DEBUG] 	Submitted job # 204
+2014-10-20 15:18:57,068 [DEBUG] 	Submitted job # 205
+2014-10-20 15:18:57,068 [DEBUG] 	Submitted job # 206
+2014-10-20 15:18:57,068 [DEBUG] 	Submitted job # 207
+2014-10-20 15:18:57,068 [DEBUG] 	Submitted job # 208
+2014-10-20 15:18:57,068 [DEBUG] 	Submitted job # 209
+2014-10-20 15:18:57,068 [DEBUG] 	Submitted job # 210
+2014-10-20 15:18:57,069 [DEBUG] 	Submitted job # 211
+2014-10-20 15:18:57,069 [DEBUG] 	Submitted job # 212
+2014-10-20 15:18:57,069 [DEBUG] 	Submitted job # 213
+2014-10-20 15:18:57,069 [DEBUG] 	Submitted job # 214
+2014-10-20 15:18:57,069 [DEBUG] 	Submitted job # 215
+2014-10-20 15:18:57,069 [DEBUG] 	Submitted job # 216
+2014-10-20 15:18:57,069 [DEBUG] 	Submitted job # 217
+2014-10-20 15:18:57,069 [DEBUG] 	Submitted job # 218
+2014-10-20 15:18:57,069 [DEBUG] 	Submitted job # 219
+2014-10-20 15:18:57,069 [DEBUG] 	Submitted job # 220
+2014-10-20 15:18:57,069 [DEBUG] 	Submitted job # 221
+2014-10-20 15:18:57,069 [DEBUG] 	Submitted job # 222
+2014-10-20 15:18:57,069 [DEBUG] 	Submitted job # 223
+2014-10-20 15:18:57,069 [DEBUG] 	Submitted job # 224
+2014-10-20 15:18:57,069 [DEBUG] 	Submitted job # 225
+2014-10-20 15:18:57,069 [DEBUG] 	Submitted job # 226
+2014-10-20 15:18:57,069 [DEBUG] 	Submitted job # 227
+2014-10-20 15:18:57,070 [DEBUG] 	Submitted job # 228
+2014-10-20 15:18:57,070 [DEBUG] 	Submitted job # 229
+2014-10-20 15:18:57,070 [DEBUG] 	Submitted job # 230
+2014-10-20 15:18:57,070 [DEBUG] 	Submitted job # 231
+2014-10-20 15:18:57,070 [DEBUG] 	Submitted job # 232
+2014-10-20 15:18:57,070 [DEBUG] 	Submitted job # 233
+2014-10-20 15:18:57,070 [DEBUG] 	Submitted job # 234
+2014-10-20 15:18:57,070 [DEBUG] 	Submitted job # 235
+2014-10-20 15:18:57,070 [DEBUG] 	Submitted job # 236
+2014-10-20 15:18:57,070 [DEBUG] 	Submitted job # 237
+2014-10-20 15:18:57,070 [DEBUG] 	Submitted job # 238
+2014-10-20 15:18:57,070 [DEBUG] 	Submitted job # 239
+2014-10-20 15:18:57,070 [DEBUG] 	Submitted job # 240
+2014-10-20 15:18:57,070 [DEBUG] 	Submitted job # 241
+2014-10-20 15:18:57,070 [DEBUG] 	Submitted job # 242
+2014-10-20 15:18:57,070 [DEBUG] 	Submitted job # 243
+2014-10-20 15:18:57,070 [DEBUG] 	Submitted job # 244
+2014-10-20 15:18:57,071 [DEBUG] 	Submitted job # 245
+2014-10-20 15:18:57,071 [DEBUG] 	Submitted job # 246
+2014-10-20 15:18:57,071 [DEBUG] 	Submitted job # 247
+2014-10-20 15:18:57,071 [DEBUG] 	Submitted job # 248
+2014-10-20 15:18:57,071 [DEBUG] 	Submitted job # 249
+2014-10-20 15:18:57,071 [DEBUG] 	Submitted job # 250
+2014-10-20 15:18:57,245 [DEBUG] 	Updating [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250]] state SubSuccess
+2014-10-20 15:18:57,911 [DEBUG] 	GRIDNAME: /C=DE/O=GermanGrid/OU=DESY/CN=Pooja Saxena 
+2014-10-20 15:18:58,254 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'cacheduration': 24, 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0x81f650>, 'conn': <httplib.HTTPSConnection instance at 0xa0c6c8>}, 'logger': <logging.Logger object at 0x81f650>, 'cacheduration': 24, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /afs/desy.de/user/p/pooja/.cms_sitedbcache (duration 24 hours, max reuse 24.0 hours)
+2014-10-20 15:18:58,643 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/afs/desy.de/user/p/pooja/.cms_sitedbcache', 'cacheduration': 24, 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0x81f650>, 'conn': <httplib.HTTPSConnection instance at 0xa0c6c8>}, 'logger': <logging.Logger object at 0x81f650>, 'cacheduration': 24, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /afs/desy.de/user/p/pooja/.cms_sitedbcache (duration 24 hours, max reuse 24.0 hours)
+2014-10-20 15:18:58,742 [DEBUG] 	Submission Time: 20.7268571854
+2014-10-20 15:18:58,742 [INFO] 	Total of 250 jobs submitted.

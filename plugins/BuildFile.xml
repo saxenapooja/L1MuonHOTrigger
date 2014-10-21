@@ -1,0 +1,12 @@
+
+<library file="*.cc" name="L1TriggerL1IntegratedMuonTriggerPlugins"> 
+  <use name="L1Trigger/L1IntegratedMuonTrigger"/>
+  <use name="L1Trigger/DTTrackFinder"/>
+  <use name="FWCore/ServiceRegistry"/>
+  <use name="CommonTools/UtilAlgos"/>
+  <use name="DataFormats/HepMCCandidate"/>
+  <use name="DQM/DTMonitorModule"/>
+  <use name="rootgraphics"/>
+
+  <flags EDM_PLUGIN="1"/>
+</library>
