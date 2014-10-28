@@ -10,8 +10,8 @@ Validated for:
 
 To build:
 
-* scram p CMSSW CMSSW_7_1_0
-* cd CMSSW_7_1_0/src/
+* scram p CMSSW CMSSW_7_1_7
+* cd CMSSW_7_1_7/src/
 * cmsenv
 * git clone https://github.com/saxenapooja/L1MuonHOTrigger.git L1Trigger/L1IntegratedMuonTrigger/
 * scram b -j9
