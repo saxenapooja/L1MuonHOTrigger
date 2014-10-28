@@ -1,17 +1,27 @@
-L1IntegratedMuonTrigger
+L1IntegratedHOMuonTrigger
 =======================
 
 Code for implementing and studying a L1 trigger that uses trigger primitive information from all muon subsystems and Hadron-outer calorimeter of CMS.
 
-Requires a scram environment to run.
+Validated for:
 
-The usual spot for checking out the code would be in L1Trigger.
+* CMSSW_7_1_X
 
-The following assumes you have run cmsenv.
 
-mkdir -p $CMSSW_BASE/src/L1Trigger/L1IntegratedMuonTrigger
+To build:
 
-cd $CMSSW_BASE/src/L1Trigger/L1IntegratedMuonTrigger
+* scram p CMSSW CMSSW_7_1_0
+* cd CMSSW_7_1_0/src/
+* cmsenv
+* git clone https://github.com/saxenapooja/L1MuonHOTrigger.git L1Trigger/L1IntegratedMuonTrigger/
+* scram b -j9
 
-git clone https://github.com/saxenapooja/L1MuonHOTrigger.git L1Trigger/L1IntegratedMuonTrigger/
 
+To run:
+
+* cd L1Trigger/L1IntegratedMuonTrigger/test
+* cmsRun run_L1ITMuonBarrelLocalTrigger_cfg.py
+
+Info Page:
+
+* https://twiki.cern.ch/twiki/bin/viewauth/CMS/DtDttfTriggerUpgradeStudies#Technical_Aspects_Data_Samples_a
