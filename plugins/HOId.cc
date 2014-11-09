@@ -22,7 +22,7 @@ HOId::HOId(DetId id) {
 }
 
 
-HOId::HOId(int ieta, int iphi, double emin, double emax): iEta(ieta), iPhi(iphi), Emin(emin), Emax(emax) {
+HOId::HOId(int ieta, int iphi): ieta_(ieta), iphi_(iphi) {
   checkHOId();
 
   // Check that arguments are within the range
@@ -47,67 +47,74 @@ void HOId::checkHOId() {
 }
 
 
-int HOId::GetBX() const{
+int HOId::bx() const{
   int bx = 2;
   return bx;
 }
 
+unsigned HOId::phi() const{
+  return iphi_;
+}
 
-int HOId::GetRing() const {
-  int ring = 0;
-  if(iEta < -10)
-    ring = -2;
-  if((iEta > -11) && (iEta < -4))
-    ring = -1;
-  if((iEta > -5) && (iEta < 5))
-    ring = 0;
-  if((iEta > 4) && (iEta < 11))
-    ring = 1;
-  if(iEta > 10)
-    ring = 2;
+signed HOId::eta() const{
+  return ieta_;
+}
+
+int HOId::ring() const {
+  int ring_ = 0;
+  if(ieta_ < -10)
+    ring_ = -2;
+  if((ieta_ > -11) && (ieta_ < -4))
+    ring_ = -1;
+  if((ieta_ > -5) && (ieta_ < 5))
+    ring_ = 0;
+  if((ieta_ > 4) && (ieta_ < 11))
+    ring_ = 1;
+  if(ieta_ > 10)
+    ring_ = 2;
   
-  return ring;
+  return ring_;
 }
 
 
-int HOId::GetSector() const {
-  int sector = 0;
-  if (iPhi > 71 && iPhi < 5  ) sector =1;
-  if (iPhi > 4  && iPhi < 11 ) sector =2;
-  if (iPhi > 10 && iPhi < 17 ) sector =3;
-  if (iPhi > 16 && iPhi < 23 ) sector =4;
-  if (iPhi > 22 && iPhi < 29 ) sector =5;
-  if (iPhi > 28 && iPhi < 35 ) sector =6;
-  if (iPhi > 34 && iPhi < 41 ) sector =7;
-  if (iPhi > 40 && iPhi < 47 ) sector =8;
-  if (iPhi > 46 && iPhi < 53 ) sector =9;
-  if (iPhi > 52 && iPhi < 59 ) sector =10;
-  if (iPhi > 58 && iPhi < 65 ) sector =11;
-  if (iPhi > 64 && iPhi < 71 ) sector =12;
+int HOId::sector() const {
+  int sector_ = 0;
+  if (iphi_ > 71 && iphi_ < 5  ) sector_ =1;
+  if (iphi_ > 4  && iphi_ < 11 ) sector_ =2;
+  if (iphi_ > 10 && iphi_ < 17 ) sector_ =3;
+  if (iphi_ > 16 && iphi_ < 23 ) sector_ =4;
+  if (iphi_ > 22 && iphi_ < 29 ) sector_ =5;
+  if (iphi_ > 28 && iphi_ < 35 ) sector_ =6;
+  if (iphi_ > 34 && iphi_ < 41 ) sector_ =7;
+  if (iphi_ > 40 && iphi_ < 47 ) sector_ =8;
+  if (iphi_ > 46 && iphi_ < 53 ) sector_ =9;
+  if (iphi_ > 52 && iphi_ < 59 ) sector_ =10;
+  if (iphi_ > 58 && iphi_ < 65 ) sector_ =11;
+  if (iphi_ > 64 && iphi_ < 71 ) sector_ =12;
 
-  return sector;
+  return sector_;
 }
 
 
-int HOId::GetTrayID() const {
-  int trayID = -1;
+int HOId::trayId() const {
+  int trayId_ = -1;
 
-  if (iPhi%6 == 5 ) trayID = 0; //loweset tray
-  if (iPhi%6 == 0 ) trayID = 1; //loweset+1
-  if (iPhi%6 == 1 ) trayID = 2; //loweset+2
-  if (iPhi%6 == 2 ) trayID = 3; //loweset+3
-  if (iPhi%6 == 3 ) trayID = 4; //loweset+4
-  if (iPhi%6 == 4 ) trayID = 5; //loweset+5
+  if (iphi_%6 == 5 ) trayId_ = 0; //loweset tray
+  if (iphi_%6 == 0 ) trayId_ = 1; //loweset+1
+  if (iphi_%6 == 1 ) trayId_ = 2; //loweset+2
+  if (iphi_%6 == 2 ) trayId_ = 3; //loweset+3
+  if (iphi_%6 == 3 ) trayId_ = 4; //loweset+4
+  if (iphi_%6 == 4 ) trayId_ = 5; //loweset+5
 
-  return trayID;
+  return trayId_;
 }
 
 
-int HOId::GetTileID() const {
-  int tile = iEta * iPhi;
+int HOId::tileId() const {
+  int tile = ieta_ * iphi_;
   // tileID tile;
-  // tile.eta = iEta;
-  // tile.phi = iPhi;
+  // tile.eta = ieta_;
+  // tile.phi = iphi_;
   return  tile;
 }
 

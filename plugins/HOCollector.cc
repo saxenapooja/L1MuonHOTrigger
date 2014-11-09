@@ -36,18 +36,17 @@ void HOCollector::extractPrimitives(const edm::Event& ev, const edm::EventSetup&
   double Emin = 0;
   double Emax = 0;
   
-  HOId id(ieta, iphi, Emin, Emax);
+  HOId id(ieta, iphi);
 
-  double bx = 0;
   for(; bho_reco != eho_reco; ++bho_reco){
     out.push_back(TriggerPrimitive(id,
-				   id.GetRing(),
-				   id.GetSector(),
-				   id.GetTrayID(),
-				   id.GetTileID(),
+				   id.ring(),
+				   id.sector(),
+				   id.trayId(),
+				   id.tileId(),
    				   Emin,
 				   Emax,
-				   bx));
+				   id.bx()));
   }
   
 }
