@@ -14,7 +14,7 @@ To build:
 * cd CMSSW_7_1_7/src/
 * cmsenv
 * git clone https://github.com/saxenapooja/L1MuonHOTrigger.git L1Trigger/L1IntegratedMuonTrigger/
-* scram b -j9
+* scram b -j20
 
 
 To run:
