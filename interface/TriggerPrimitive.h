@@ -26,6 +26,7 @@
 
 //Global point (created on the fly)
 #include "DataFormats/GeometryVector/interface/GlobalPoint.h"
+#include "L1Trigger/L1IntegratedMuonTrigger/interface/HOId.h"
 
 // DT digi types
 class DTChamberId;
@@ -40,17 +41,34 @@ class CSCDetId;
 class RPCDigiL1Link;
 class RPCDetId;
 
+// HO digi type
+class HcalDetId;
+class HOId;
+class HcalDigiCollections;
+
 namespace L1ITMu {
 
   class TriggerPrimitive {
   public:
     // define the subsystems that we have available
-    enum subsystem_type{kDT,kCSC,kRPC,kNSubsystems};
+    enum subsystem_type{kDT, kCSC, kRPC, kHO, kNSubsystems};
     
     // define the data we save locally from each subsystem type
     // variables in these structs keep their colloquial meaning
     // within a subsystem
     // for RPCs you have to unroll the digi-link and raw det-id
+
+    struct HOData {
+    HOData() : ring(0), sector(0), trayId(0), tileId(0), Emax(0), Emin(0), bx(0) {}
+      signed ring;
+      unsigned sector;
+      unsigned trayId;
+      signed tileId;
+      double Emax;
+      double Emin;
+      int bx;
+    };
+
     struct RPCData {
       RPCData() : strip(0), layer(0), bx(0) {}
       unsigned strip;
@@ -125,6 +143,16 @@ namespace L1ITMu {
 		     const unsigned strip,
 		     const unsigned layer,
 		     const uint16_t bx);
+    //HO
+    TriggerPrimitive(const HOId&,
+		     const signed ring,
+		     const unsigned sector,
+		     const unsigned trayId,
+		     const signed tileId,
+		     const double Emax,
+		     const double Emin,
+		     const unsigned bx);
+    
     
     //copy
     TriggerPrimitive(const TriggerPrimitive&);
@@ -142,27 +170,29 @@ namespace L1ITMu {
     const double getCMSGlobalRho() const { return _rho; }    
     void   setCMSGlobalRho(const double rho) { _rho = rho; }
 
-    const GlobalPoint getCMSGlobalPoint() const { double theta = 2. * atan( exp(-_eta) );
+    const GlobalPoint getCMSGlobalPoint() const { 
+      double theta = 2. * atan( exp(-_eta) );
       return GlobalPoint( GlobalPoint::Cylindrical( _rho, _phi, _rho/tan(theta)) ); };
-
-
+    
+    
     // this is the relative bending angle with respect to the 
     // current phi position. 
     // The total angle of the track is phi + bendAngle
     void setThetaBend(const double theta) { _theta = theta; }
     double getThetaBend() const { return _theta; }
-
+    
     template<typename IDType>
       IDType detId() const { return IDType(_id); }
-
+    
+    
     // accessors to raw subsystem data
     const DTData  getDTData()  const { return _dt;  }
     const CSCData getCSCData() const { return _csc; }
     const RPCData getRPCData() const { return _rpc; }      
+    const HOData  getHOData()  const { return _ho; }      
     
     // consistent accessors to common information    
     const int getBX() const;
-    
     const unsigned getGlobalSector() const { return _globalsector; } 
     const unsigned getSubSector() const { return _subsector; } 
     
@@ -180,21 +210,23 @@ namespace L1ITMu {
     void calculateRPCGlobalSector(const RPCDetId& chid, 
 				  unsigned& global_sector, 
 				  unsigned& subsector );
-      
+    void calculateHOGlobalSector(const HOId& chid,
+				 unsigned& global_sector, 
+				 unsigned& subsector );
+    
     DTData  _dt;
     CSCData _csc;
     RPCData _rpc;
+    HOData  _ho;
     
     DetId _id;
-    
     subsystem_type _subsystem;
-
+    
     unsigned _globalsector; // [1,6] in 60 degree sectors
-    unsigned _subsector; // [1,2] in 30 degree partitions of a sector 
-    double _eta,_phi,_rho; // global pseudorapidity, phi, perp rho
-    double _theta; // bend angle with respect to ray from (0,0,0)    
+    unsigned _subsector;    // [1,2] in 30 degree partitions of a sector 
+    double _eta,_phi,_rho;  // global pseudorapidity, phi, perp rho
+    double _theta;          // bend angle with respect to ray from (0,0,0)    
   };
-
 }
 
 #endif
