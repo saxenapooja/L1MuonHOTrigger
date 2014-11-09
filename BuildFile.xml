@@ -10,6 +10,7 @@
 <use name="DataFormats/Common"/>
 
 <use name="Geometry/Records"/>
+<use name="Geometry/CaloGeometry"/>
 
 <use name="L1Trigger/DTTrackFinder"/>
 <use name="Geometry/DTGeometry"/>
