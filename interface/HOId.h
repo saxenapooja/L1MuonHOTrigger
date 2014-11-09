@@ -15,10 +15,8 @@
 class HOId : public DetId {
   
  private:
-  int iEta;
-  int iPhi;
-  double Emin;
-  double Emax;
+  int ieta_;
+  int iphi_;
   
  public:
   /// Default constructor. 
@@ -39,14 +37,15 @@ class HOId : public DetId {
   
 
   /// Construct from fully qualified identifier.
-  HOId(int ieta, int iphi, double emin, double emax);
+  HOId(int ieta_, int iphi_);
 
-  int GetRing()   const;
-  int GetSector() const;
-  int GetTrayID() const;
-  int GetTileID() const;
-  int GetBX() const;
-  
+  signed eta() const;
+  unsigned phi() const;
+  int ring()   const;
+  int sector() const;
+  int trayId() const;
+  int tileId() const;
+  int bx() const;
   
   static const int maxEta = 15;
   static const int minEta = -15;

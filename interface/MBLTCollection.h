@@ -117,6 +117,7 @@ namespace L1ITMu {
   private :
 
     /// dt segments
+     //typedef std::vector<TriggerPrimitiveRef>     TriggerPrimitiveList
     TriggerPrimitiveList _dtAssociatedStubs;
 
     /// rpc inner layer hits
