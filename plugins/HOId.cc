@@ -17,6 +17,7 @@ HOId::HOId() : DetId(DetId::Hcal, HcalSubdetector::HcalOuter){}
 HOId::HOId(uint32_t id) {
   checkHOId();               // Check this is a valid id for HO
 }
+
 HOId::HOId(DetId id) {
   checkHOId();               // Check this is a valid id for HO
 }
@@ -47,7 +48,7 @@ void HOId::checkHOId() {
 }
 
 
-int HOId::bx() const{
+unsigned HOId::bx() const{
   int bx = 2;
   return bx;
 }
@@ -105,6 +106,7 @@ int HOId::trayId() const {
   if (iphi_%6 == 2 ) trayId_ = 3; //loweset+3
   if (iphi_%6 == 3 ) trayId_ = 4; //loweset+4
   if (iphi_%6 == 4 ) trayId_ = 5; //loweset+5
+ 
 
   return trayId_;
 }
