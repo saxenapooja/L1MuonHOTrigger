@@ -43,25 +43,21 @@ void L1ITMu::MBLTCollection::addStub(const TriggerPrimitiveRef& stub)
 
 
 
-void L1ITMu::MBLTCollection::associate( double minRpcPhi )
-{
-
-  size_t dtSize = _dtAssociatedStubs.size();
-  size_t rpcInSize = _rpcInAssociatedStubs.size();
+void L1ITMu::MBLTCollection::associate( double minRpcPhi ) {
+  size_t dtSize     = _dtAssociatedStubs.size();
+  size_t rpcInSize  = _rpcInAssociatedStubs.size();
   size_t rpcOutSize = _rpcOutAssociatedStubs.size();
   _dtMapAss.resize( dtSize );
-
-
-//   std::vector< std::map<double, size_t> > dtIdxIn;
-//   dtIdxIn.resize(rpcInSize);
-//   std::vector< std::map<double, size_t> > dtIdxOut;
-//   dtIdxOut.resize(rpcOutSize);
-
+  
+  //   std::vector< std::map<double, size_t> > dtIdxIn;
+  //   dtIdxIn.resize(rpcInSize);
+  //   std::vector< std::map<double, size_t> > dtIdxOut;
+  //   dtIdxOut.resize(rpcOutSize);
+  
   std::vector< size_t > rpcInAss( rpcInSize, 0 );
   std::vector< size_t > rpcOutAss( rpcOutSize, 0 );
 
   for ( size_t iDt = 0; iDt < dtSize; ++iDt ) {
-
     double phi = _dtAssociatedStubs.at(iDt)->getCMSGlobalPhi();
     std::map< double, size_t > rpcInIdx;
     std::map< double, size_t > rpcOutIdx;
@@ -72,9 +68,9 @@ void L1ITMu::MBLTCollection::associate( double minRpcPhi )
       if ( deltaPhiIn < minRpcPhi ) {
 	rpcInIdx[ deltaPhiIn ] = iIn;
 	++rpcInAss[iIn];
-// 	dtIdxIn[iIn][ deltaPhiIn ] = iDt;
+	// 	dtIdxIn[iIn][ deltaPhiIn ] = iDt;
       }
-    }
+    } // rpcInSize
 
     for ( size_t iOut = 0; iOut < rpcOutSize; ++iOut ) {
       double phiOut = _rpcOutAssociatedStubs.at( iOut )->getCMSGlobalPhi();
@@ -82,14 +78,14 @@ void L1ITMu::MBLTCollection::associate( double minRpcPhi )
       if ( deltaPhiOut < minRpcPhi ) {
 	rpcOutIdx[ deltaPhiOut ] = iOut;
 	++rpcOutAss[iOut];
-// 	dtIdxOut[iOut][ deltaPhiOut ] = iDt;
+	// 	dtIdxOut[iOut][ deltaPhiOut ] = iDt;
       }
-    }
+    } // rpcOutSize
+    
 
     MBLTCollection::primitiveAssociation & dtAss = _dtMapAss.at(iDt);
-
     /// fill up index for In associations
-    std::map< double, size_t >::const_iterator it = rpcInIdx.begin();
+    std::map< double, size_t >::const_iterator  it   = rpcInIdx.begin();
     std::map< double, size_t >::const_iterator itend = rpcInIdx.end();
     dtAss.rpcIn.reserve( rpcInIdx.size() );
     for ( ; it != itend; ++it ) dtAss.rpcIn.push_back( it->second );
@@ -99,7 +95,6 @@ void L1ITMu::MBLTCollection::associate( double minRpcPhi )
     itend = rpcOutIdx.end();
     dtAss.rpcOut.reserve( rpcOutIdx.size() );
     for ( ; it != itend; ++it ) dtAss.rpcOut.push_back( it->second );
-
   }
 
   /// fill unassociated rpcIn
@@ -121,24 +116,24 @@ void L1ITMu::MBLTCollection::associate( double minRpcPhi )
 
 L1ITMu::TriggerPrimitiveList L1ITMu::MBLTCollection::getRpcInAssociatedStubs( size_t dtIndex ) const
 {
-
   L1ITMu::TriggerPrimitiveList returnList;
 
   try {
-    const primitiveAssociation & prim = _dtMapAss.at(dtIndex);
-    std::vector<size_t>::const_iterator it = prim.rpcIn.begin();
+    // std::vector< primitiveAssociation > _dtMapAss;
+    const primitiveAssociation & prim         = _dtMapAss.at(dtIndex);
+    std::vector<size_t>::const_iterator it    = prim.rpcIn.begin();
     std::vector<size_t>::const_iterator itend = prim.rpcIn.end();
 
-    for ( ; it != itend; ++it ) returnList.push_back( _rpcInAssociatedStubs.at( *it ) );
+    for ( ; it != itend; ++it ) 
+      returnList.push_back( _rpcInAssociatedStubs.at( *it ) );
 
   } catch ( const std::out_of_range & e ) {
     throw cms::Exception("DT Chamber Out of Range") 
       << "Requested DT primitive in position " << dtIndex << " out of " << _dtMapAss.size() << " total primitives"
       << std::endl;
   }
-
+  
   return returnList;
-
 }
 
 

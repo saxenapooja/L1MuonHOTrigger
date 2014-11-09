@@ -14,10 +14,10 @@
 using namespace L1ITMu;
 
 namespace {
-  const char subsystem_names[][4] = {"DT","CSC","RPC"};
+  const char subsystem_names[][4] = {"DT","CSC","RPC","HO"};
 }
-
-//constructors from DT data
+ 
+// constructors from DT data
 TriggerPrimitive::TriggerPrimitive(const DTChamberId& detid,
 				   const L1MuDTChambPhDigi& digi_phi,
 				   const int segment_number):
@@ -30,9 +30,9 @@ TriggerPrimitive::TriggerPrimitive(const DTChamberId& detid,
   _dt.theta_code = -1;
   _dt.theta_quality = -1;
   // now phi trigger
-  _dt.bx = digi_phi.bxNum();
-  _dt.wheel = digi_phi.whNum();
-  _dt.sector = digi_phi.scNum();
+  _dt.bx      = digi_phi.bxNum();
+  _dt.wheel   = digi_phi.whNum();
+  _dt.sector  = digi_phi.scNum();
   _dt.station = digi_phi.stNum();
   _dt.radialAngle = digi_phi.phi();
   _dt.bendingAngle = digi_phi.phiB();
@@ -40,6 +40,7 @@ TriggerPrimitive::TriggerPrimitive(const DTChamberId& detid,
   _dt.Ts2TagCode = digi_phi.Ts2Tag();
   _dt.BxCntCode = digi_phi.BxCnt();
 }
+
 
 TriggerPrimitive::TriggerPrimitive(const DTChamberId& detid,
 				   const L1MuDTChambThDigi& digi_th,
@@ -108,6 +109,7 @@ TriggerPrimitive::TriggerPrimitive(const CSCDetId& detid,
   _csc.cscID   = digi.getCSCID();
 }
 
+
 // constructor from RPC data
 TriggerPrimitive::TriggerPrimitive(const RPCDetId& detid,
 				   const unsigned strip,
@@ -118,13 +120,38 @@ TriggerPrimitive::TriggerPrimitive(const RPCDetId& detid,
   calculateRPCGlobalSector(detid,_globalsector,_subsector);
   _rpc.strip = strip;
   _rpc.layer = layer;
-  _rpc.bx = bx;
+  _rpc.bx    = bx;
 }
+
+
+// constructor from HO data
+TriggerPrimitive::TriggerPrimitive(const HOId& detid,
+				   const signed ring,
+				   const unsigned sector,
+				   const unsigned trayId,
+				   const signed tileId,
+				   const double Emax,
+				   const double Emin,
+				   const unsigned bx): 
+  _id(detid),
+  _subsystem(TriggerPrimitive::kHO) {
+  calculateHOGlobalSector(detid,_globalsector,_subsector);
+  _ho.ring   = ring;
+  _ho.sector = sector;
+  _ho.trayId = trayId;
+  _ho.tileId = tileId;
+  _ho.Emax   = Emax;
+  _ho.Emin   = Emin;
+  _ho.bx     = bx;
+}
+
+
 
 TriggerPrimitive::TriggerPrimitive(const TriggerPrimitive& tp):
   _dt(tp._dt),
   _csc(tp._csc),
   _rpc(tp._rpc),
+  _ho(tp._ho),
   _id(tp._id),
   _subsystem(tp._subsystem),  
   _globalsector(tp._globalsector),
@@ -136,10 +163,11 @@ TriggerPrimitive::TriggerPrimitive(const TriggerPrimitive& tp):
 }
 
 TriggerPrimitive& TriggerPrimitive::operator=(const TriggerPrimitive& tp) {
-  this->_dt = tp._dt;
-  this->_csc = tp._csc;
-  this->_rpc = tp._rpc;
-  this->_id = tp._id;
+  this->_dt    = tp._dt;
+  this->_csc   = tp._csc;
+  this->_rpc   = tp._rpc;
+  this->_ho    = tp._ho;
+  this->_id    = tp._id;
   this->_subsystem = tp._subsystem;
   this->_globalsector = tp._globalsector;
   this->_subsector = tp._subsector;
@@ -177,6 +205,9 @@ bool TriggerPrimitive::operator==(const TriggerPrimitive& tp) const {
 	   this->_rpc.strip == tp._rpc.strip &&
 	   this->_rpc.layer == tp._rpc.layer &&
 	   this->_rpc.bx == tp._rpc.bx &&
+	   // this->_ho.hoeta == tp._ho.hoeta &&
+	   // this->_ho.hophi == tp._ho.hophi &&
+	   // this->_ho.bx == tp._ho.bx &&
 	   this->_id == tp._id &&
 	   this->_subsystem == tp._subsystem &&
 	   this->_globalsector == tp._globalsector &&
@@ -191,6 +222,8 @@ const int TriggerPrimitive::getBX() const {
     return _csc.bx;
   case kRPC:
     return _rpc.bx;
+  case kHO:
+    return _ho.bx;
   default:
     throw cms::Exception("Invalid Subsytem") 
       << "The specified subsystem for this track stub is out of range"
@@ -213,6 +246,12 @@ void TriggerPrimitive::calculateRPCGlobalSector(const RPCDetId& chid,
 						unsigned& global_sector, 
 						unsigned& subsector ) {
 }
+
+void TriggerPrimitive::calculateHOGlobalSector(const HOId& chid,
+					       unsigned& global_sector, 
+					       unsigned& subsector ) {
+}
+
 
 void TriggerPrimitive::print(std::ostream& out) const {
   unsigned idx = (unsigned) _subsystem;
@@ -253,6 +292,12 @@ void TriggerPrimitive::print(std::ostream& out) const {
     out << "Local BX      : " << _rpc.bx << std::endl;
     out << "Strip         : " << _rpc.strip << std::endl;
     out << "Layer         : " << _rpc.layer << std::endl;
+    break;
+  case kHO:
+    //    out << detId<RPCDetId>() << std::endl;
+    out << "Local BX      : " << _ho.bx << std::endl;
+    // out << "Eta           : " << _ho.hoeta << std::endl;
+    // out << "Phi           : " << _ho.hophi << std::endl;
     break;
   default:
     throw cms::Exception("Invalid Subsytem") 
