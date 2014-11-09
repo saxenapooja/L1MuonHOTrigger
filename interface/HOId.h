@@ -45,7 +45,7 @@ class HOId : public DetId {
   int sector() const;
   int trayId() const;
   int tileId() const;
-  int bx() const;
+  unsigned bx() const;
   
   static const int maxEta = 15;
   static const int minEta = -15;
