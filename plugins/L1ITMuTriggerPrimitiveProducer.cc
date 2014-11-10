@@ -44,6 +44,7 @@ private:
   std::unique_ptr<GeometryTranslator> geom;
 };
 
+/////
 L1ITMuTriggerPrimitiveProducer::L1ITMuTriggerPrimitiveProducer(const PSet& p) {
   std::unique_ptr<SubsystemCollectorFactory> 
     factory(SubsystemCollectorFactory::get());
@@ -56,16 +57,17 @@ L1ITMuTriggerPrimitiveProducer::L1ITMuTriggerPrimitiveProducer(const PSet& p) {
   auto nend = psetNames.cend();
   for( ; name != nend; ++name ) {
     PSet collector_cfg = p.getParameterSet(*name);
-    std::string collector_type = 
-      collector_cfg.getParameter<std::string>("collectorType");
-    collectors[*name] = collector_ptr( factory->create( collector_type,
-							collector_cfg  ) );
+    std::string collector_type = collector_cfg.getParameter<std::string>("collectorType");
+    collectors[*name] = collector_ptr( factory->create( collector_type,	collector_cfg  ) );
+
+    // typedef std::vector<TriggerPrimitive> TriggerPrimitiveCollection;
     produces<TriggerPrimitiveCollection>(*name);
   }   
   produces<TriggerPrimitiveCollection>();
   factory.release();
 }
 
+///// 
 void L1ITMuTriggerPrimitiveProducer::produce(edm::Event& ev, 
 					     const edm::EventSetup& es) {
   std::auto_ptr<TriggerPrimitiveCollection> 
