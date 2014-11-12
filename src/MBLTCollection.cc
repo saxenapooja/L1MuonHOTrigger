@@ -3,7 +3,9 @@
 #include "DataFormats/MuonDetId/interface/RPCDetId.h"
 #include "DataFormats/MuonDetId/interface/DTChamberId.h"
 #include "DataFormats/Math/interface/deltaPhi.h"
+#include "L1Trigger/L1IntegratedMuonTrigger/interface/HOId.h"
 
+// constructor
 L1ITMu::MBLTCollection::MBLTCollection( const DTChamberId & dtId )
 {
   _wheel = dtId.wheel();
@@ -11,15 +13,17 @@ L1ITMu::MBLTCollection::MBLTCollection( const DTChamberId & dtId )
   _station = dtId.station();
 }
 
+
+// addstub
 void L1ITMu::MBLTCollection::addStub(const TriggerPrimitiveRef& stub)
 {
-
   TriggerPrimitive::subsystem_type type = stub->subsystem();
 
   switch ( type ) {
   case TriggerPrimitive::kDT :
     _dtAssociatedStubs.push_back( stub );
     break;
+
   case TriggerPrimitive::kRPC : {
     const RPCDetId & rpcId = stub->detId<RPCDetId>();
 
@@ -34,21 +38,28 @@ void L1ITMu::MBLTCollection::addStub(const TriggerPrimitiveRef& stub)
       << "The RPC layer is not a barrel layer" << std::endl;
     break;
   }
+
+  case TriggerPrimitive::kHO : {
+    //const HOId & hoid = stub->detId<HOId>();
+    _hoInAssociatesStubs.push_back( stub );
+    break;
+  }
   default :
     throw cms::Exception("Invalid Subsytem") 
       << "The specified subsystem for this track stub is out of range"
       << std::endl;
-  }
-}
+  }//switch
+} // addStub(const TriggerPrimitiveRef& stub)
 
 
-
-void L1ITMu::MBLTCollection::associate( double minRpcPhi ) {
+// 
+void L1ITMu::MBLTCollection::associate( double minRpcPhi, double minHoPhi, bool addHO) {
   size_t dtSize     = _dtAssociatedStubs.size();
   size_t rpcInSize  = _rpcInAssociatedStubs.size();
   size_t rpcOutSize = _rpcOutAssociatedStubs.size();
-  _dtMapAss.resize( dtSize );
+  size_t hoInsize   = _hoInAssociatesStubs.size();
   
+  _dtMapAss.resize( dtSize );
   //   std::vector< std::map<double, size_t> > dtIdxIn;
   //   dtIdxIn.resize(rpcInSize);
   //   std::vector< std::map<double, size_t> > dtIdxOut;
@@ -56,11 +67,13 @@ void L1ITMu::MBLTCollection::associate( double minRpcPhi ) {
   
   std::vector< size_t > rpcInAss( rpcInSize, 0 );
   std::vector< size_t > rpcOutAss( rpcOutSize, 0 );
+  std::vector< size_t > hoInAss( hoInsize, 0 );
 
   for ( size_t iDt = 0; iDt < dtSize; ++iDt ) {
     double phi = _dtAssociatedStubs.at(iDt)->getCMSGlobalPhi();
     std::map< double, size_t > rpcInIdx;
     std::map< double, size_t > rpcOutIdx;
+    std::map< double, size_t > hoInIdx;
 
     for ( size_t iIn = 0; iIn < rpcInSize; ++iIn ) {
       double phiIn = _rpcInAssociatedStubs.at( iIn )->getCMSGlobalPhi();
@@ -71,7 +84,8 @@ void L1ITMu::MBLTCollection::associate( double minRpcPhi ) {
 	// 	dtIdxIn[iIn][ deltaPhiIn ] = iDt;
       }
     } // rpcInSize
-
+    
+    
     for ( size_t iOut = 0; iOut < rpcOutSize; ++iOut ) {
       double phiOut = _rpcOutAssociatedStubs.at( iOut )->getCMSGlobalPhi();
       double deltaPhiOut = fabs( reco::deltaPhi( phi, phiOut ) );
@@ -81,8 +95,19 @@ void L1ITMu::MBLTCollection::associate( double minRpcPhi ) {
 	// 	dtIdxOut[iOut][ deltaPhiOut ] = iDt;
       }
     } // rpcOutSize
-    
 
+    if(addHO) {
+      for ( size_t iHO = 0; iHO < hoInsize; ++iHO ) {
+	double phiHO = _hoInAssociatesStubs.at( iHO )->getCMSGlobalPhi();
+	double deltaPhi = fabs( reco::deltaPhi( phi, phiHO ) );
+	if ( deltaPhi < minHoPhi) {
+	  hoInIdx[ deltaPhi ] = iHO;
+	  ++hoInAss[iHO];
+	}
+      } // hoInsize
+    } // addHO
+
+    
     MBLTCollection::primitiveAssociation & dtAss = _dtMapAss.at(iDt);
     /// fill up index for In associations
     std::map< double, size_t >::const_iterator  it   = rpcInIdx.begin();
@@ -95,7 +120,16 @@ void L1ITMu::MBLTCollection::associate( double minRpcPhi ) {
     itend = rpcOutIdx.end();
     dtAss.rpcOut.reserve( rpcOutIdx.size() );
     for ( ; it != itend; ++it ) dtAss.rpcOut.push_back( it->second );
-  }
+
+    // fill up index for HO associations
+    if(addHO) {
+      it = hoInIdx.begin();
+      itend = hoInIdx.end();
+      dtAss.hoIn.reserve(hoInIdx.size());
+      for(; it != itend; ++it ) dtAss.hoIn.push_back( it->second );
+    }
+  } // for ( size_t iDt = 0; iDt < dtSize; ++iDt )
+
 
   /// fill unassociated rpcIn
   for ( size_t iIn = 0; iIn < rpcInSize; ++iIn ) {
@@ -111,7 +145,17 @@ void L1ITMu::MBLTCollection::associate( double minRpcPhi ) {
   if ( _rpcOutAssociatedStubs.size() < _rpcMapUnass.rpcOut.size() ) 
     throw cms::Exception("More unassociated OUT hits than the total OUT rpc hits") << std::endl;
 
-}
+  // fill unassociated hoHits
+  if(addHO) { 
+    for ( size_t iHO = 0; iHO < hoInsize; ++iHO ) { 
+      if( !hoInAss.at(iHO) )  _rpcMapUnass.hoIn.push_back(iHO);
+    }
+    if( _hoInAssociatesStubs.size() < _rpcMapUnass.hoIn.size()) 
+      throw cms::Exception("More unassociated HO hits than the total HO hits") << std::endl;
+  }
+
+}// associate
+
 
 
 L1ITMu::TriggerPrimitiveList L1ITMu::MBLTCollection::getRpcInAssociatedStubs( size_t dtIndex ) const
@@ -126,6 +170,30 @@ L1ITMu::TriggerPrimitiveList L1ITMu::MBLTCollection::getRpcInAssociatedStubs( si
 
     for ( ; it != itend; ++it ) 
       returnList.push_back( _rpcInAssociatedStubs.at( *it ) );
+
+  } catch ( const std::out_of_range & e ) {
+    throw cms::Exception("DT Chamber Out of Range") 
+      << "Requested DT primitive in position " << dtIndex << " out of " << _dtMapAss.size() << " total primitives"
+      << std::endl;
+  }
+  
+  return returnList;
+}
+
+
+
+L1ITMu::TriggerPrimitiveList L1ITMu::MBLTCollection::getHOAssociatedStubs( size_t dtIndex ) const
+{
+  L1ITMu::TriggerPrimitiveList returnList;
+
+  try {
+    // std::vector< primitiveAssociation > _dtMapAss;
+    const primitiveAssociation & prim         = _dtMapAss.at(dtIndex);
+    std::vector<size_t>::const_iterator it    = prim.hoIn.begin();
+    std::vector<size_t>::const_iterator itend = prim.hoIn.end();
+    
+    for ( ; it != itend; ++it ) 
+      returnList.push_back( _hoInAssociatesStubs.at( *it ) );
 
   } catch ( const std::out_of_range & e ) {
     throw cms::Exception("DT Chamber Out of Range") 
@@ -154,9 +222,7 @@ L1ITMu::TriggerPrimitiveList L1ITMu::MBLTCollection::getRpcOutAssociatedStubs( s
       << "The number of dt primitives in sector are " << _dtMapAss.size()
       << std::endl;
   }
-
   return returnList;
-
 }
 
 
@@ -165,7 +231,6 @@ L1ITMu::TriggerPrimitiveList L1ITMu::MBLTCollection::getRpcOutAssociatedStubs( s
 L1ITMu::TriggerPrimitiveList
 L1ITMu::MBLTCollection::getRpcInUnassociatedStubs() const
 {
-
   L1ITMu::TriggerPrimitiveList returnList;
   std::vector<size_t>::const_iterator it = _rpcMapUnass.rpcIn.begin();
   std::vector<size_t>::const_iterator itend = _rpcMapUnass.rpcIn.end();
@@ -174,14 +239,12 @@ L1ITMu::MBLTCollection::getRpcInUnassociatedStubs() const
     returnList.push_back( _rpcInAssociatedStubs.at( *it ) );
 
   return returnList;
-
 }
 
 
 L1ITMu::TriggerPrimitiveList
 L1ITMu::MBLTCollection::getRpcOutUnassociatedStubs() const
 {
-
   L1ITMu::TriggerPrimitiveList returnList;
   std::vector<size_t>::const_iterator it = _rpcMapUnass.rpcOut.begin();
   std::vector<size_t>::const_iterator itend = _rpcMapUnass.rpcOut.end();
@@ -190,9 +253,21 @@ L1ITMu::MBLTCollection::getRpcOutUnassociatedStubs() const
     returnList.push_back( _rpcOutAssociatedStubs.at( *it ) );
 
   return returnList;
-
 }
 
+
+L1ITMu::TriggerPrimitiveList
+L1ITMu::MBLTCollection::getHOUnassociatedStubs() const
+{
+  L1ITMu::TriggerPrimitiveList returnList;
+  std::vector<size_t>::const_iterator it = _rpcMapUnass.hoIn.begin();
+  std::vector<size_t>::const_iterator itend = _rpcMapUnass.hoIn.end();
+
+  for ( ; it != itend; ++it )
+    returnList.push_back( _hoInAssociatesStubs.at( *it ) );
+
+  return returnList;
+}
 
 
 
@@ -489,8 +564,5 @@ L1ITMu::MBLTCollection::getUnassociatedRpcClusters( double minRpcPhi ) const
       associated.push_back( std::pair< TriggerPrimitiveList, TriggerPrimitiveList >(primIn, primOut) );
     }
   }
-
-
   return associated;
-
 }
