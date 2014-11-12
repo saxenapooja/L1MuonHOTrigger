@@ -11,27 +11,24 @@
 //
 
 #include <iostream>
-
 #include "L1Trigger/L1IntegratedMuonTrigger/interface/TriggerPrimitiveFwd.h"
 #include "L1Trigger/L1IntegratedMuonTrigger/interface/TriggerPrimitive.h"
 #include "DataFormats/Common/interface/RefToBase.h"
-
 #include "DataFormats/MuonDetId/interface/DTChamberId.h"
-
 
 namespace L1ITMu {
   
   class MBLTCollection {
 
   public:
-
     /// internal enum for subdetector stub identification
-    enum subsystem_offset{ kDT, kRPCb, kCSC, kRPCf };
+    enum subsystem_offset{ kDT, kRPCb, kCSC, kRPCf, kHO };
 
     /// structure for internal indexing
     struct primitiveAssociation {
       std::vector< size_t > rpcIn;
       std::vector< size_t > rpcOut;
+      std::vector< size_t > hoIn;
     };
 
     enum bxMatch { NOMATCH, INMATCH, OUTMATCH, FULLMATCH };
@@ -63,6 +60,12 @@ namespace L1ITMu {
       return _rpcOutAssociatedStubs;
     }
 
+    /// ho hits only
+    const TriggerPrimitiveList & getHOInner() const {
+      return _hoInAssociatesStubs;
+    }
+
+
     /// returns wheel
     inline int wheel() const { return _wheel; }
 
@@ -81,18 +84,24 @@ namespace L1ITMu {
     /// rpc outer layer hits associated to a given dt station
     TriggerPrimitiveList getRpcOutAssociatedStubs( size_t dtIndex ) const;
 
+    // ho hits associated to a given dt station
+    TriggerPrimitiveList getHOAssociatedStubs( size_t dtIndex ) const;
+
     // build association map among dt and rpc primitives
-    void associate( double );
+    void associate( double , double, bool);
 
     // look for common rpc hists among 2 dt primitives
     bxMatch haveCommonRpc( size_t dt1, size_t dt2 ) const;
 
-     /// rpc inner layer hits associated to a given dt station
+     /// rpc inner layer hits unassociated to a given dt station
      TriggerPrimitiveList getRpcInUnassociatedStubs() const;
  
-     /// rpc outer layer hits associated to a given dt station
+     /// rpc outer layer hits unassociated to a given dt station
      TriggerPrimitiveList getRpcOutUnassociatedStubs() const;
- 
+
+     /// ho hits unassociated to a given dt station
+     TriggerPrimitiveList getHOUnassociatedStubs() const;
+
      /// RPC unassociated clusters
      std::vector< std::pair< TriggerPrimitiveList, TriggerPrimitiveList > >
        getUnassociatedRpcClusters( double minRpcPhi ) const;
@@ -114,8 +123,8 @@ namespace L1ITMu {
      size_t reduceRpcClusters( std::vector< std::vector <size_t> > & tmpClusters,
                              const TriggerPrimitiveList & rpcList,
                              double minRpcPhi ) const;
-  private :
 
+  private :
     /// dt segments
      //typedef std::vector<TriggerPrimitiveRef>     TriggerPrimitiveList
     TriggerPrimitiveList _dtAssociatedStubs;
@@ -126,14 +135,18 @@ namespace L1ITMu {
     /// rpc outer layer hits
     TriggerPrimitiveList _rpcOutAssociatedStubs;
 
+    //// HO inner hits
+    TriggerPrimitiveList _hoInAssociatesStubs;
+
     /// space coordinates
     int _wheel, _sector, _station;
 
     // association map among dt and rpc primitives
     std::vector< primitiveAssociation > _dtMapAss;
+
     // association map among dt and rpc primitives
     primitiveAssociation _rpcMapUnass;
- 
+
   };
 }
 
