@@ -26,7 +26,7 @@
 
 //Global point (created on the fly)
 #include "DataFormats/GeometryVector/interface/GlobalPoint.h"
-#include "L1Trigger/L1IntegratedMuonTrigger/interface/HOId.h"
+#include "HadronOuter/HO/interface/HOId.h"
 
 // DT digi types
 class DTChamberId;

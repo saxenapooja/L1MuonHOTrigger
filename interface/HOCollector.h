@@ -1,5 +1,6 @@
 #ifndef __L1ITMU_HOCOLLECTOR_H__
 #define __L1ITMU_HOCOLLECTOR_H__
+
 // 
 // Class: L1ITMu::HOCollector
 //
@@ -8,12 +9,14 @@
 //
 // Author: P. Saxena (DESY)
 //
+
 #include <vector>
 #include "L1Trigger/L1IntegratedMuonTrigger/interface/SubsystemCollector.h"
 #include "FWCore/Utilities/interface/InputTag.h"
 #include "Math/Point3D.h"
 #include "Math/Vector3D.h"
 #include "Math/Plane3D.h"
+#include "HadronOuter/HO/interface/HOId.h"
 
 using namespace ROOT::Math;
 
