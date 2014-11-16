@@ -10,7 +10,7 @@
 
 #include "Geometry/CaloGeometry/interface/CaloGeometry.h"
 #include "Geometry/Records/interface/CaloGeometryRecord.h"
-
+#include "DataFormats/Provenance/interface/EventAuxiliary.h" //for bunch crossing
 #include "L1Trigger/L1IntegratedMuonTrigger/interface/HOCollector.h"
 
 using namespace L1ITMu;
@@ -38,6 +38,8 @@ void HOCollector::extractPrimitives(const edm::Event& ev, const edm::EventSetup&
   
   HOId id(ieta, iphi);
 
+  int _bx = ev.eventAuxiliary().bunchCrossing();
+
   for(; bho_reco != eho_reco; ++bho_reco){
     out.push_back(TriggerPrimitive(id,
 				   id.ring(),
@@ -46,7 +48,7 @@ void HOCollector::extractPrimitives(const edm::Event& ev, const edm::EventSetup&
 				   id.tileId(),
    				   Emin,
 				   Emax,
-				   id.bx()));
+				   _bx));
   }
   
 }
