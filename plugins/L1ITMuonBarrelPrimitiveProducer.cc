@@ -27,6 +27,7 @@
 
 // user include files
 #include "DataFormats/Math/interface/deltaPhi.h"
+#include <iostream>
 
 class L1ITMuonBarrelPrimitiveProducer : public edm::EDProducer {
 
@@ -38,11 +39,15 @@ public:
 private:
   edm::InputTag _mbltCollectionInput;
   const L1ITMu::PrimitiveCombiner::resolutions _resol;
-  const int _qualityRemappingMode;
-  const int _useRpcBxForDtBelowQuality;
+  const bool _addHO;
+  const int  _qualityRemappingMode;
+  const int  _useRpcBxForDtBelowQuality;
   edm::ESHandle<DTGeometry> _muonGeom;
 };
 
+// typedef std::vector<TriggerPrimitive>        TriggerPrimitiveCollection;
+// typedef edm::Ref<TriggerPrimitiveCollection> TriggerPrimitiveRef;
+// typedef std::vector<TriggerPrimitiveRef>     TriggerPrimitiveList
 std::ostream & operator<< (std::ostream & out, const L1ITMu::TriggerPrimitiveList & rpc )
 {
   std::vector<L1ITMu::TriggerPrimitiveRef>::const_iterator it = rpc.begin();
@@ -56,54 +61,57 @@ L1ITMuonBarrelPrimitiveProducer::~L1ITMuonBarrelPrimitiveProducer()
 {
 }
 
+
 L1ITMuonBarrelPrimitiveProducer::L1ITMuonBarrelPrimitiveProducer( const edm::ParameterSet& iConfig )
   : _mbltCollectionInput( iConfig.getParameter<edm::InputTag>("MBLTCollection") ),
     _resol( iConfig.getParameter<double>("xDtResol"), 
 	    iConfig.getParameter<double>("xRpcResol"),
 	    iConfig.getParameter<double>("phibDtCorrResol"),
-	    iConfig.getParameter<double>("phibDtUnCorrResol")
+	    iConfig.getParameter<double>("phibDtUnCorrResol"),
+	    iConfig.getParameter<double>("xHoResol")
 	    ),
+    _addHO( iConfig.getParameter<bool>("AddHOStubs")),
     _qualityRemappingMode( iConfig.getParameter<int>("qualityRemappingMode") ),
     _useRpcBxForDtBelowQuality( iConfig.getParameter<int>("useRpcBxForDtBelowQuality") )
- 
 {
   produces<L1MuDTChambPhContainer>();
-  //produces<L1MuDTChambThContainer>();
+  // produces<L1MuDTChambThContainer>();
   // produces<std::vector<L1MuDTChambPhDigi> >();
 }
 
 
-void L1ITMuonBarrelPrimitiveProducer::produce( edm::Event& iEvent, 
-					      const edm::EventSetup& iSetup )
+void L1ITMuonBarrelPrimitiveProducer::produce( edm::Event& iEvent, const edm::EventSetup& iSetup )
 {
+  std::cout<<" Event  -----------------------------"<< &iEvent << std::endl;
   iSetup.get<MuonGeometryRecord>().get(_muonGeom);
-
+  
   std::auto_ptr<L1MuDTChambPhContainer> out(new L1MuDTChambPhContainer);
   std::vector<L1MuDTChambPhDigi> phiChambVector;
   
-  edm::Handle<L1ITMu::MBLTContainer> mbltContainer;
+  // typedef std::map<DTChamberId, MBLTCollection> MBLTContainer;
+  edm::Handle<L1ITMu::MBLTContainer>  mbltContainer;
   iEvent.getByLabel( _mbltCollectionInput, mbltContainer );
 
-  L1ITMu::MBLTContainer::const_iterator st = mbltContainer->begin();
+  L1ITMu::MBLTContainer::const_iterator st    = mbltContainer->begin();
   L1ITMu::MBLTContainer::const_iterator stend = mbltContainer->end();
-
+  
   L1MuDTChambPhContainer phiContainer;
   std::vector<L1MuDTChambPhDigi> phiVector;
   
+  ///
   for ( ; st != stend; ++st ) {
-
     const L1ITMu::MBLTCollection & mbltStation = st->second;
-
+    
     /// useful index
     int station = mbltStation.station();
-    int wheel = mbltStation.wheel();
-    int sector = mbltStation.sector();
-    ///
-
+    int wheel   = mbltStation.wheel();
+    int sector  = mbltStation.sector();
+    
     /// get dt to rpc associations
     size_t dtListSize = mbltStation.getDtSegments().size();
     std::vector<size_t> uncorrelated;
     std::vector<size_t> correlated;
+
     for ( size_t iDt = 0; iDt < dtListSize; ++iDt ) {
       const L1ITMu::TriggerPrimitiveRef & dt = mbltStation.getDtSegments().at(iDt);
       int dtquality = dt->getDTData().qualityCode;
@@ -111,7 +119,7 @@ void L1ITMuonBarrelPrimitiveProducer::produce( edm::Event& iEvent,
       /// skip for the moment uncorrelated
       // int qualityCode = -2;
       switch ( dtquality ) {
-      case -1 : continue;/// -1 are theta
+      case -1 : continue; /// -1 are theta
       case 0 : /* qualityCode = -2;*/ break;
       case 1 : /* qualityCode = -2;*/ break;
       case 2 : uncorrelated.push_back( iDt ); continue;
@@ -123,54 +131,78 @@ void L1ITMuonBarrelPrimitiveProducer::produce( edm::Event& iEvent,
       }
 
       //L1MuDTChambPhDigi chamb( dt->getBX(), wheel, sector-1, station, dt->getDTData().radialAngle,
-      //		       dt->getDTData().bendingAngle, qualityCode,
-      //			       dt->getDTData().Ts2TagCode, dt->getDTData().BxCntCode );
+      //dt->getDTData().bendingAngle, qualityCode,
+      //dt->getDTData().Ts2TagCode, dt->getDTData().BxCntCode );
       //phiChambVector.push_back( chamb );
     }
 
     // START OF BX ANALYSIS FOR CORRELATED TRIGGER
     size_t cSize = correlated.size(); 
     for ( size_t idxDt = 0; idxDt < cSize; ++idxDt ) {
-      int bx=-999;
+      int bx = -999;
       int iDt = correlated.at(idxDt);
       if ( iDt < 0 ) continue;
-      const L1ITMu::TriggerPrimitive & dt = *mbltStation.getDtSegments().at(iDt);
-      L1ITMu::TriggerPrimitiveList rpcInMatch = mbltStation.getRpcInAssociatedStubs( iDt );
-      L1ITMu::TriggerPrimitiveList rpcOutMatch = mbltStation.getRpcOutAssociatedStubs( iDt );
-      size_t rpcInMatchSize = rpcInMatch.size();
+      
+      const L1ITMu::TriggerPrimitive & dt      = *mbltStation.getDtSegments().at(iDt);
+      L1ITMu::TriggerPrimitiveList rpcInMatch  =  mbltStation.getRpcInAssociatedStubs( iDt );
+      L1ITMu::TriggerPrimitiveList rpcOutMatch =  mbltStation.getRpcOutAssociatedStubs( iDt );
+      
+      // if(_addHO) { 
+      // 	L1ITMu::TriggerPrimitiveList hoMatch     =  mbltStation.getHOAssociatedStubs( iDt );
+      // 	size_t hoMatchSize     = hoMatch.size();
+      // }	
+      size_t rpcInMatchSize  = rpcInMatch.size();
       size_t rpcOutMatchSize = rpcOutMatch.size();
+      
+      //      std::cout<<"MatchSize (rpcIn, rpcOut, ho) : (" << rpcInMatchSize <<", "<< rpcOutMatchSize << ", " << hoMatchSize <<")"<<  std::endl;
+
       if ( rpcInMatchSize && rpcOutMatchSize ) {
-	const L1ITMu::TriggerPrimitive & rpcIn = *rpcInMatch.front();
+	const L1ITMu::TriggerPrimitive & rpcIn  = *rpcInMatch.front();
 	const L1ITMu::TriggerPrimitive & rpcOut = *rpcOutMatch.front();
-	/// only the first is real...
+	
+	//if(_hoAdd && hoMatchSize) const L1ITMu::TriggerPrimitive & hoIn   = *hoMatch.front();
+	
+	// only the first is real...
 	// LG try also to reassign BX to single H using RPC BX, e.g. do not ask for DT and RPC to have the same BX
-	if (( dt.getBX() == rpcIn.getBX() && dt.getBX() == rpcOut.getBX() ) || (_qualityRemappingMode>1 && rpcIn.getBX()==rpcOut.getBX() && abs(dt.getBX()-rpcIn.getBX())<=1)) {
-	  bx = rpcIn.getBX();
-	}
-      }else if (rpcInMatchSize){
+	if (( dt.getBX() == rpcIn.getBX() && dt.getBX() == rpcOut.getBX() ) || 
+	    (_qualityRemappingMode > 1 && rpcIn.getBX()==rpcOut.getBX() &&  abs(dt.getBX()-rpcIn.getBX()) <= 1)) 
+	  {
+	    bx = rpcIn.getBX();
+	  }
+      } // if ( rpcInMatchSize && rpcOutMatchSize )
+
+      else if (rpcInMatchSize) {
 	const L1ITMu::TriggerPrimitive & rpcIn = *rpcInMatch.front();
-	if ( dt.getBX() == rpcIn.getBX() || (_qualityRemappingMode>1 && abs(dt.getBX()-rpcIn.getBX())<=1)) {
+	if ( dt.getBX() == rpcIn.getBX() || (_qualityRemappingMode > 1 && abs(dt.getBX()-rpcIn.getBX()) <= 1)) {
 	  bx = rpcIn.getBX();
 	}
       }
+
       else if (rpcOutMatchSize){
 	const L1ITMu::TriggerPrimitive & rpcOut = *rpcOutMatch.front();
-	if ( dt.getBX() == rpcOut.getBX() || (_qualityRemappingMode>1 && abs(dt.getBX()-rpcOut.getBX())<=1)) {
+	if ( dt.getBX() == rpcOut.getBX() || (_qualityRemappingMode>1 && abs(dt.getBX()-rpcOut.getBX()) <= 1)) {
 	  bx = rpcOut.getBX();
 	}
       }
+      
+      
       // add primitive here
-      int newBx=dt.getBX();
-      if (bx>-999 && dt.getDTData().qualityCode<_useRpcBxForDtBelowQuality){
-	newBx=bx;
-      }
+      int newBx = dt.getBX();
+      if ( bx > -999 && dt.getDTData().qualityCode < _useRpcBxForDtBelowQuality )
+	{
+	  newBx = bx;
+	}
+
+
       L1MuDTChambPhDigi chamb( newBx, wheel, sector-1, station, dt.getDTData().radialAngle,
 			       dt.getDTData().bendingAngle, dt.getDTData().qualityCode,
 			       dt.getDTData().Ts2TagCode, dt.getDTData().BxCntCode );
       phiChambVector.push_back( chamb );
     }
     // END OF BX ANALYSIS FOR CORRELATED TRIGGER
+    
 
+    // START OF BX ANALYSIS FOR UNCORRELATED TRIGGER
     size_t uncSize = uncorrelated.size(); 
     for ( size_t idxDt = 0; idxDt < uncSize; ++idxDt ) {
 
@@ -179,18 +211,18 @@ void L1ITMuonBarrelPrimitiveProducer::produce( edm::Event& iEvent,
       const L1ITMu::TriggerPrimitive & dt = *mbltStation.getDtSegments().at(iDt);
 
       /// check if there is a pair of HI+HO at different bx
-      int closest = -1;
+      int closest    = -1;
       int closestIdx = -1;
       double minDeltaPhiDt = 9999999999;
       for ( size_t jdxDt = idxDt+1; jdxDt < uncSize; ++jdxDt ) {
 
 	int jDt = uncorrelated.at(jdxDt);
 	if ( jDt < 0 ) continue;
-
+	
 	const L1ITMu::TriggerPrimitiveRef & dtM = mbltStation.getDtSegments().at(jDt);
 	if ( dt.getBX() == dtM->getBX() || dt.getDTData().qualityCode == dtM->getDTData().qualityCode )
 	  continue;
-
+	
 	double deltaPhiDt = fabs( reco::deltaPhi( dt.getCMSGlobalPhi(), dtM->getCMSGlobalPhi() ) );
 	if ( deltaPhiDt < minDeltaPhiDt ) {
 	  closest = jDt;
@@ -199,13 +231,14 @@ void L1ITMuonBarrelPrimitiveProducer::produce( edm::Event& iEvent,
 	}
       }
 
+
       /// check if the pair shares the closest rpc hit
       L1ITMu::MBLTCollection::bxMatch match = L1ITMu::MBLTCollection::NOMATCH;
       if ( closest > 0 && minDeltaPhiDt < 0.05 ) {
-      //if ( closest > 0 ) {
+	//if ( closest > 0 ) {
 	match = mbltStation.haveCommonRpc( iDt, closest );
       }
-
+      
       /// this is just a set of output variables for building L1ITMuDTChambPhDigi
       int qualityCode = dt.getDTData().qualityCode;
       int bx = -2;
@@ -224,7 +257,7 @@ void L1ITMuonBarrelPrimitiveProducer::produce( edm::Event& iEvent,
 
 	/// redefine quality
 	qualityCode = 4;
-	L1ITMu::TriggerPrimitiveList rpcInMatch = mbltStation.getRpcInAssociatedStubs( iDt );
+	L1ITMu::TriggerPrimitiveList rpcInMatch  = mbltStation.getRpcInAssociatedStubs( iDt );
 	L1ITMu::TriggerPrimitiveList rpcOutMatch = mbltStation.getRpcOutAssociatedStubs( iDt );
 
 	/// there is a pair HI+HO with a shared inner RPC hit
@@ -253,11 +286,11 @@ void L1ITMuonBarrelPrimitiveProducer::produce( edm::Event& iEvent,
 
 
       } else { /// there is no match
-
 	L1ITMu::TriggerPrimitiveList rpcInMatch = mbltStation.getRpcInAssociatedStubs( iDt );
 	L1ITMu::TriggerPrimitiveList rpcOutMatch = mbltStation.getRpcOutAssociatedStubs( iDt );
 	size_t rpcInMatchSize = rpcInMatch.size();
 	size_t rpcOutMatchSize = rpcOutMatch.size();
+
 
 	/// the uncorrelated has possibly inner and outer confirmation
 	if ( rpcInMatchSize && rpcOutMatchSize ) {
@@ -374,7 +407,7 @@ void L1ITMuonBarrelPrimitiveProducer::produce( edm::Event& iEvent,
         const L1ITMu::TriggerPrimitive & rpc = (*inRpc.at(inPos));
         station = rpc.detId<RPCDetId>().station();
         sector  = rpc.detId<RPCDetId>().sector();
-        wheel = rpc.detId<RPCDetId>().ring();
+        wheel   = rpc.detId<RPCDetId>().ring();
         combiner.addRpcIn( rpc );
 
 
@@ -439,7 +472,7 @@ void L1ITMuonBarrelPrimitiveProducer::produce( edm::Event& iEvent,
       double bx = combiner.bx();
       double Ts2TagCode = 0;
       double BxCntCode = 0;
-
+      
       L1MuDTChambPhDigi chamb( bx, wheel, sector-1, station, radialAngle,
                                bendingAngle, qualityCode,
                                Ts2TagCode, BxCntCode );
@@ -448,18 +481,11 @@ void L1ITMuonBarrelPrimitiveProducer::produce( edm::Event& iEvent,
       //std::cout << "IN: \n" << inRpc;
       //std::cout << "OUT: \n" << outRpc;
       //std::cout << "\n";
-
     }
-
   }
-
-
-
-
   out->setContainer( phiChambVector );
   /// fill event
   iEvent.put(out);
-
 }
 
 #include "FWCore/Framework/interface/MakerMacros.h"

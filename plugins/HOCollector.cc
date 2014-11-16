@@ -1,4 +1,3 @@
-#include "L1Trigger/L1IntegratedMuonTrigger/interface/HOCollector.h"
 
 #include "DataFormats/HcalDigi/interface/HcalDigiCollections.h"
 #include "DataFormats/HcalRecHit/interface/HcalRecHitCollections.h"
@@ -12,11 +11,12 @@
 #include "Geometry/CaloGeometry/interface/CaloGeometry.h"
 #include "Geometry/Records/interface/CaloGeometryRecord.h"
 
-#include "L1Trigger/L1IntegratedMuonTrigger/interface/HOId.h"
+#include "L1Trigger/L1IntegratedMuonTrigger/interface/HOCollector.h"
+
 using namespace L1ITMu;
 
-HOCollector::HOCollector( const edm::ParameterSet& ps ):
-  SubsystemCollector(ps) {
+HOCollector::HOCollector( const edm::ParameterSet& ps ): SubsystemCollector(ps) 
+{
 }
 
 
