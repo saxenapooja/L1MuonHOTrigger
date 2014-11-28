@@ -14,7 +14,7 @@ process = cms.Process('L1')
 # workflow work in CMSSW_6_2_12_patch1 using 2012 geomery and was not used for 
 # big sample production, only technical workflow was tested
 #globalTag = "START62_V1"
-globalTag = "START71_V8"
+globalTag = "POSTLS170_V3::All"
 
 # The eta range for GEN muon production
 # the present DTTF goes up to |eta|<1.04, the BarrelTF will go roughly up to
@@ -68,6 +68,52 @@ process.source = cms.Source("EmptySource")
 process.options = cms.untracked.PSet(
 
 )
+
+
+# suggested by Piet, added on Nov_28, 2014 
+# source: https://github.com/pietverwilligen/MyCmsDriverCommands/blob/master/ConfigFileSnippets/RPC_Digitization_ReadLocalConditions.py                                                         
+from CondCore.DBCommon.CondDBSetup_cfi import *
+process.noisesfromprep = cms.ESSource("PoolDBESSource",
+                                      # connect = cms.string('sqlite_file:RPC_Phase2UpgradeStudies_mc.db'),                                                                                                                                         # connect = cms.string('sqlite_file:RPC_Eff2012_PhaseII_mc.db'),    
+                                      # connect = cms.string('sqlite_file:RPC_Eff2012_256Strips_mc.db'),                                                                                                  
+                                      # connect = cms.string('sqlite_file:RPC_dataDrivenCondition_RPCEta2Upscope_mc.db'),   
+				      connect = cms.string('sqlite_file:RPC_3108Rolls_BkgAtLumi1_14TeV_mc.db'),
+                                      DBParameters = cms.PSet(
+		messageLevel = cms.untracked.int32(0),
+		authenticationPath = cms.untracked.string('.'),
+		authenticationMethod = cms.untracked.uint32(1)
+		),
+                                      timetype = cms.string('runnumber'),
+                                      toGet = cms.VPSet(cms.PSet(
+			record = cms.string('RPCStripNoisesRcd'),
+			# tag = cms.string('RPC_Phase2UpgradeStudies_mc')
+			# tag = cms.string('RPC_Eff2012_PhaseII_mc')
+			# tag = cms.string('RPC_Eff2012_256Strips_mc') 
+			# tag = cms.string('RPC_dataDrivenCondition_RPCEta2Upscope_mc')                                                                                                 
+			tag = cms.string('RPC_3108Rolls_BkgAtLumi1_14TeV_mc')
+			)
+                                                        )
+                                      )
+
+#process.es_prefer_noisesfromprep=cms.ESPrefer("PoolDBESSource", "noisesfromprep")
+#process.clsfromprep = cms.ESSource("PoolDBESSource",
+#    # connect = cms.string('sqlite_file:RPCClusterSize__upscope_mc_v1.db'),
+#    connect = cms.string('sqlite_file:RPCClusterSize_PhaseII_mc.db'),
+#    DBParameters = cms.PSet(
+#        messageLevel = cms.untracked.int32(0),
+#        authenticationPath = cms.untracked.string('.'),
+#        authenticationMethod = cms.untracked.uint32(1)
+#        ),
+#    timetype = cms.string('runnumber'),
+#    toGet = cms.VPSet(cms.PSet(
+#        record = cms.string('RPCClusterSizeRcd'),
+#        # tag = cms.string('RPCClusterSize__upscope_mc_v1')
+#        tag = cms.string('RPCClusterSize_PhaseII_mc')
+#        )
+#    )
+#)
+#process.es_prefer_clsfromprep=cms.ESPrefer("PoolDBESSource" , "clsfromprep")
+#
 
 if muonCharge > 0 :
 	chargeTag='Plus'
