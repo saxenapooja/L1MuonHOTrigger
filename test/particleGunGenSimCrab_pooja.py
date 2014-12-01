@@ -14,7 +14,8 @@ process = cms.Process('L1')
 # workflow work in CMSSW_6_2_12_patch1 using 2012 geomery and was not used for 
 # big sample production, only technical workflow was tested
 #globalTag = "START62_V1"
-globalTag = "POSTLS170_V3::All"
+#globalTag = "START71_V8"
+#globalTag = "POSTLS170_V3::All"
 
 # The eta range for GEN muon production
 # the present DTTF goes up to |eta|<1.04, the BarrelTF will go roughly up to
@@ -44,9 +45,14 @@ process.load('SimGeneral.HepPDTESSource.pythiapdt_cfi')
 process.load('FWCore.MessageService.MessageLogger_cfi')
 process.load('Configuration.EventContent.EventContent_cff')
 process.load('SimGeneral.MixingModule.mixNoPU_cfi')
-process.load('Configuration.StandardSequences.GeometryRecoDB_cff')
-process.load('Configuration.StandardSequences.GeometrySimDB_cff')
-process.load('Configuration.StandardSequences.MagneticField_38T_cff')
+
+# new_geometry added on  Nov 28, 2014
+process.load('Configuration.Geometry.GeometryExtended2015Reco_cff')
+process.load('Configuration.Geometry.GeometryExtended2015_cff')
+process.load('Configuration.StandardSequences.MagneticField_38T_PostLS1_cff')
+#process.load('Configuration.StandardSequences.GeometryRecoDB_cff')
+#process.load('Configuration.StandardSequences.GeometrySimDB_cff')
+#process.load('Configuration.StandardSequences.MagneticField_38T_cff')
 process.load('Configuration.StandardSequences.Generator_cff')
 process.load('IOMC.EventVertexGenerators.VtxSmearedRealistic8TeVCollision_cfi')
 process.load('GeneratorInterface.Core.genFilterSummary_cff')
@@ -60,7 +66,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(1000)
+    input = cms.untracked.int32(10)
 )
 
 # Input source
@@ -71,11 +77,12 @@ process.options = cms.untracked.PSet(
 
 
 # suggested by Piet, added on Nov_28, 2014 
-# source: https://github.com/pietverwilligen/MyCmsDriverCommands/blob/master/ConfigFileSnippets/RPC_Digitization_ReadLocalConditions.py                                                         
+# source: https://github.com/pietverwilligen/MyCmsDriverCommands/blob/master/ConfigFileSnippets/RPC_Digitization_ReadLocalConditions.py 
 from CondCore.DBCommon.CondDBSetup_cfi import *
 process.noisesfromprep = cms.ESSource("PoolDBESSource",
-                                      # connect = cms.string('sqlite_file:RPC_Phase2UpgradeStudies_mc.db'),                                                                                                                                         # connect = cms.string('sqlite_file:RPC_Eff2012_PhaseII_mc.db'),    
-                                      # connect = cms.string('sqlite_file:RPC_Eff2012_256Strips_mc.db'),                                                                                                  
+                                      # connect = cms.string('sqlite_file:RPC_Phase2UpgradeStudies_mc.db'),                                                      
+				      # connect = cms.string('sqlite_file:RPC_Eff2012_PhaseII_mc.db'),    
+                                      # connect = cms.string('sqlite_file:RPC_Eff2012_256Strips_mc.db'),                                                    
                                       # connect = cms.string('sqlite_file:RPC_dataDrivenCondition_RPCEta2Upscope_mc.db'),   
 				      connect = cms.string('sqlite_file:RPC_3108Rolls_BkgAtLumi1_14TeV_mc.db'),
                                       DBParameters = cms.PSet(
@@ -86,14 +93,16 @@ process.noisesfromprep = cms.ESSource("PoolDBESSource",
                                       timetype = cms.string('runnumber'),
                                       toGet = cms.VPSet(cms.PSet(
 			record = cms.string('RPCStripNoisesRcd'),
+			label = cms.untracked.string("noisesfromprep"),
 			# tag = cms.string('RPC_Phase2UpgradeStudies_mc')
 			# tag = cms.string('RPC_Eff2012_PhaseII_mc')
 			# tag = cms.string('RPC_Eff2012_256Strips_mc') 
-			# tag = cms.string('RPC_dataDrivenCondition_RPCEta2Upscope_mc')                                                                                                 
+			# tag = cms.string('RPC_dataDrivenCondition_RPCEta2Upscope_mc')  
 			tag = cms.string('RPC_3108Rolls_BkgAtLumi1_14TeV_mc')
 			)
                                                         )
                                       )
+process.es_prefer_noisesfromprep=cms.ESPrefer("PoolDBESSource", "noisesfromprep")
 
 #process.es_prefer_noisesfromprep=cms.ESPrefer("PoolDBESSource", "noisesfromprep")
 #process.clsfromprep = cms.ESSource("PoolDBESSource",
@@ -153,7 +162,13 @@ process.FEVTDEBUGoutput = cms.OutputModule("PoolOutputModule",
 process.genstepfilter.triggerConditions=cms.vstring("generation_step")
 process.mix.digitizers =  cms.PSet(process.theDigitizersValid)
 from Configuration.AlCa.GlobalTag import GlobalTag
-process.GlobalTag = GlobalTag(process.GlobalTag, globalTag+'::All', '')
+#process.GlobalTag = GlobalTag(process.GlobalTag, globalTag+'::All', '')
+
+
+#http://cmslxr.fnal.gov/lxr/source/Configuration/AlCa/python/autoCond.py?view=markup
+process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
+from Configuration.AlCa.autoCond import autoCond
+process.GlobalTag.globaltag = autoCond['run2_mc'] #PRE_LS172_V15::All
 
 process.generator = cms.EDProducer("FlatRandomPtGunProducer",
   PGunParameters = cms.PSet(
