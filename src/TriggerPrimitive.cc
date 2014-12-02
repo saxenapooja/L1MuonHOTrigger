@@ -10,6 +10,7 @@
 #include "DataFormats/MuonDetId/interface/DTChamberId.h"
 #include "DataFormats/MuonDetId/interface/CSCDetId.h"
 #include "DataFormats/MuonDetId/interface/RPCDetId.h"
+//#include "DataFormats/Provenance/interface/EventAuxiliary.h"
 
 using namespace L1ITMu;
 
@@ -34,11 +35,11 @@ TriggerPrimitive::TriggerPrimitive(const DTChamberId& detid,
   _dt.wheel   = digi_phi.whNum();
   _dt.sector  = digi_phi.scNum();
   _dt.station = digi_phi.stNum();
-  _dt.radialAngle = digi_phi.phi();
+  _dt.radialAngle  = digi_phi.phi();
   _dt.bendingAngle = digi_phi.phiB();
-  _dt.qualityCode = digi_phi.code();
-  _dt.Ts2TagCode = digi_phi.Ts2Tag();
-  _dt.BxCntCode = digi_phi.BxCnt();
+  _dt.qualityCode  = digi_phi.code();
+  _dt.Ts2TagCode   = digi_phi.Ts2Tag();
+  _dt.BxCntCode    = digi_phi.BxCnt();
 }
 
 
@@ -65,6 +66,7 @@ TriggerPrimitive::TriggerPrimitive(const DTChamberId& detid,
   _dt.BxCntCode = -1;
 }
 
+
 TriggerPrimitive::TriggerPrimitive(const DTChamberId& detid,
 				   const L1MuDTChambPhDigi& digi_phi,
 				   const L1MuDTChambThDigi& digi_th,
@@ -74,9 +76,9 @@ TriggerPrimitive::TriggerPrimitive(const DTChamberId& detid,
   calculateDTGlobalSector(detid,_globalsector,_subsector);
   // fill in information from theta trigger
   _dt.theta_bti_group = theta_bti_group;
-  _dt.segment_number = digi_th.position(theta_bti_group);
-  _dt.theta_code = digi_th.code(theta_bti_group);
-  _dt.theta_quality = digi_th.quality(theta_bti_group);
+  _dt.segment_number  = digi_th.position(theta_bti_group);
+  _dt.theta_code      = digi_th.code(theta_bti_group);
+  _dt.theta_quality   = digi_th.quality(theta_bti_group);
   // now phi trigger
   _dt.bx = digi_phi.bxNum();
   _dt.wheel = digi_phi.whNum();
@@ -126,22 +128,26 @@ TriggerPrimitive::TriggerPrimitive(const RPCDetId& detid,
 
 // constructor from HO data
 TriggerPrimitive::TriggerPrimitive(const HOId& detid,
-				   const signed ring,
+				   const signed wheel,
 				   const unsigned sector,
+				   const signed eta,
+				   const unsigned phi,
 				   const unsigned trayId,
 				   const signed tileId,
 				   const double Emax,
 				   const double Emin,
-				   const unsigned bx): 
+				   const int bx): 
   _id(detid),
   _subsystem(TriggerPrimitive::kHO) {
   calculateHOGlobalSector(detid,_globalsector,_subsector);
-  _ho.ring   = ring;
-  _ho.sector = sector;
-  _ho.trayId = trayId;
-  _ho.tileId = tileId;
-  _ho.Emax   = Emax;
-  _ho.Emin   = Emin;
+  _ho.wheel  = detid.wheel();
+  _ho.sector = detid.sector();
+  _ho.eta    = detid.eta();
+  _ho.phi    = detid.phi();
+  _ho.trayId = detid.trayId();
+  _ho.tileId = detid.tileId();
+  _ho.Emax   = detid.Emax();
+  _ho.Emin   = detid.Emin();
   _ho.bx     = bx;
 }
 
