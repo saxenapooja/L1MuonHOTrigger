@@ -15,7 +15,9 @@ process = cms.Process('L1')
 # big sample production, only technical workflow was tested
 #globalTag = "START62_V1"
 #globalTag = "START71_V8"
-#globalTag = "POSTLS170_V3::All"
+globalTag = "PHYS14_25_V1::All"
+#globalTag = "MCRUN2_71_V1::All"
+#globalTag = "POSTLS170_V3::All"   
 
 # The eta range for GEN muon production
 # the present DTTF goes up to |eta|<1.04, the BarrelTF will go roughly up to
@@ -93,7 +95,7 @@ process.noisesfromprep = cms.ESSource("PoolDBESSource",
                                       timetype = cms.string('runnumber'),
                                       toGet = cms.VPSet(cms.PSet(
 			record = cms.string('RPCStripNoisesRcd'),
-			label = cms.untracked.string("noisesfromprep"),
+#			label = cms.untracked.string("noisesfromprep"),
 			# tag = cms.string('RPC_Phase2UpgradeStudies_mc')
 			# tag = cms.string('RPC_Eff2012_PhaseII_mc')
 			# tag = cms.string('RPC_Eff2012_256Strips_mc') 
@@ -104,7 +106,6 @@ process.noisesfromprep = cms.ESSource("PoolDBESSource",
                                       )
 process.es_prefer_noisesfromprep=cms.ESPrefer("PoolDBESSource", "noisesfromprep")
 
-#process.es_prefer_noisesfromprep=cms.ESPrefer("PoolDBESSource", "noisesfromprep")
 #process.clsfromprep = cms.ESSource("PoolDBESSource",
 #    # connect = cms.string('sqlite_file:RPCClusterSize__upscope_mc_v1.db'),
 #    connect = cms.string('sqlite_file:RPCClusterSize_PhaseII_mc.db'),
@@ -122,7 +123,7 @@ process.es_prefer_noisesfromprep=cms.ESPrefer("PoolDBESSource", "noisesfromprep"
 #    )
 #)
 #process.es_prefer_clsfromprep=cms.ESPrefer("PoolDBESSource" , "clsfromprep")
-#
+
 
 if muonCharge > 0 :
 	chargeTag='Plus'
@@ -164,11 +165,9 @@ process.mix.digitizers =  cms.PSet(process.theDigitizersValid)
 from Configuration.AlCa.GlobalTag import GlobalTag
 #process.GlobalTag = GlobalTag(process.GlobalTag, globalTag+'::All', '')
 
-
-#http://cmslxr.fnal.gov/lxr/source/Configuration/AlCa/python/autoCond.py?view=markup
-process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
+# http://cmslxr.fnal.gov/lxr/source/Configuration/AlCa/python/autoCond.py?view=markup
 from Configuration.AlCa.autoCond import autoCond
-process.GlobalTag.globaltag = autoCond['run2_mc'] #PRE_LS172_V15::All
+process.GlobalTag.globaltag = autoCond['run2_design'] #PRE_LS172_V15::All
 
 process.generator = cms.EDProducer("FlatRandomPtGunProducer",
   PGunParameters = cms.PSet(
