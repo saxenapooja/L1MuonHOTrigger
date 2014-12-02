@@ -5,13 +5,13 @@ Code for implementing and studying a L1 trigger that uses trigger primitive info
 
 Validated for:
 
-* CMSSW_7_1_X
+* CMSSW_7_2_2_patch1
 
 
 To build:
 
-* scram p CMSSW CMSSW_7_1_7
-* cd CMSSW_7_1_7/src/
+* scram p CMSSW CMSSW_7_2_2_patch1
+* cd CMSSW_7_2_2_patch1/src/
 * cmsenv
 * git clone https://github.com/saxenapooja/L1MuonHOTrigger.git L1Trigger/L1IntegratedMuonTrigger/
 * git clone https://github.com/saxenapooja/HadronOuter.git HadronOuter/HO 
