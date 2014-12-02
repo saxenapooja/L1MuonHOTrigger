@@ -1,5 +1,6 @@
 #ifndef __L1ITMU_TRIGGERPRIMITIVE_H__
 #define __L1ITMU_TRIGGERPRIMITIVE_H__
+
 // 
 // Class: L1ITMu::TriggerPrimitive
 //
@@ -28,6 +29,11 @@
 #include "DataFormats/GeometryVector/interface/GlobalPoint.h"
 #include "HadronOuter/HO/interface/HOId.h"
 
+/* namespace edm { */
+/*   class EventAuxiliary; */
+/* } */
+
+
 // DT digi types
 class DTChamberId;
 class L1MuDTChambPhDigi;
@@ -44,7 +50,6 @@ class RPCDetId;
 // HO digi type
 class HcalDetId;
 class HOId;
-class HcalDigiCollections;
 
 namespace L1ITMu {
 
@@ -59,9 +64,11 @@ namespace L1ITMu {
     // for RPCs you have to unroll the digi-link and raw det-id
 
     struct HOData {
-    HOData() : ring(0), sector(0), trayId(0), tileId(0), Emax(0), Emin(0), bx(0) {}
-      signed ring;
+    HOData() : wheel(0), sector(0), eta(0), phi(0), trayId(0), tileId(0), Emax(0), Emin(0), bx(0) {}
+      signed wheel;
       unsigned sector;
+      signed eta;
+      unsigned phi;
       unsigned trayId;
       signed tileId;
       double Emax;
@@ -145,13 +152,15 @@ namespace L1ITMu {
 		     const uint16_t bx);
     //HO
     TriggerPrimitive(const HOId&,
-		     const signed ring,
+		     const signed wheel,
 		     const unsigned sector,
+		     const signed eta,
+		     const unsigned phi,
 		     const unsigned trayId,
 		     const signed tileId,
 		     const double Emax,
 		     const double Emin,
-		     const unsigned bx);
+		     const int bx);
     
     
     //copy
@@ -224,7 +233,7 @@ namespace L1ITMu {
     
     unsigned _globalsector; // [1,6] in 60 degree sectors
     unsigned _subsector;    // [1,2] in 30 degree partitions of a sector 
-    double _eta,_phi,_rho;  // global pseudorapidity, phi, perp rho
+    double _eta, _phi, _rho;  // global pseudorapidity, phi, perp rho
     double _theta;          // bend angle with respect to ray from (0,0,0)    
   };
 }
