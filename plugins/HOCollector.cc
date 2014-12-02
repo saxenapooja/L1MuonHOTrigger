@@ -1,4 +1,3 @@
-
 #include "DataFormats/HcalDigi/interface/HcalDigiCollections.h"
 #include "DataFormats/HcalRecHit/interface/HcalRecHitCollections.h"
 #include "DataFormats/HcalRecHit/interface/HORecHit.h"
@@ -33,27 +32,24 @@ void HOCollector::extractPrimitives(const edm::Event& ev, const edm::EventSetup&
 
   int ieta = caloGeo->getPosition(bho_reco->id()).eta();
   int iphi = caloGeo->getPosition(bho_reco->id()).phi();
-  double Emin = 0;
-  double Emax = 0;
   
   HOId id(ieta, iphi);
-
-  int _bx = ev.eventAuxiliary().bunchCrossing();
+  int HObx = ev.eventAuxiliary().bunchCrossing();
 
   for(; bho_reco != eho_reco; ++bho_reco){
     out.push_back(TriggerPrimitive(id,
-				   id.ring(),
+				   id.wheel(),
 				   id.sector(),
+				   id.eta(),
+				   id.phi(),
 				   id.trayId(),
 				   id.tileId(),
-   				   Emin,
-				   Emax,
-				   _bx));
+   				   id.Emin(),
+				   id.Emax(),
+				   HObx));
   }
   
 }
-
-
 
 #include "L1Trigger/L1IntegratedMuonTrigger/interface/SubsystemCollectorFactory.h"
 DEFINE_EDM_PLUGIN( SubsystemCollectorFactory, HOCollector, "HOCollector");

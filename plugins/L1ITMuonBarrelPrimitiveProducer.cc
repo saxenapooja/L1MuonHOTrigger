@@ -41,6 +41,7 @@ private:
   const L1ITMu::PrimitiveCombiner::resolutions _resol;
   const bool _addHO;
   const int  _qualityRemappingMode;
+  const int  _qualityHORemappingMode;
   const int  _useRpcBxForDtBelowQuality;
   edm::ESHandle<DTGeometry> _muonGeom;
 };
@@ -70,8 +71,10 @@ L1ITMuonBarrelPrimitiveProducer::L1ITMuonBarrelPrimitiveProducer( const edm::Par
 	    iConfig.getParameter<double>("phibDtUnCorrResol"),
 	    iConfig.getParameter<double>("xHoResol")
 	    ),
-    _addHO( iConfig.getParameter<bool>("AddHOStubs")),
+    _addHO(iConfig.getUntrackedParameter<bool>("AddHOhits", true)),
+    //    _addHO( iConfig.getParameter<bool>("AddHOhits", true)),
     _qualityRemappingMode( iConfig.getParameter<int>("qualityRemappingMode") ),
+    _qualityHORemappingMode( iConfig.getParameter<int>("qualityHORemappingMode") ),
     _useRpcBxForDtBelowQuality( iConfig.getParameter<int>("useRpcBxForDtBelowQuality") )
 {
   produces<L1MuDTChambPhContainer>();
@@ -115,6 +118,7 @@ void L1ITMuonBarrelPrimitiveProducer::produce( edm::Event& iEvent, const edm::Ev
     for ( size_t iDt = 0; iDt < dtListSize; ++iDt ) {
       const L1ITMu::TriggerPrimitiveRef & dt = mbltStation.getDtSegments().at(iDt);
       int dtquality = dt->getDTData().qualityCode;
+
       /// define new set of qualities
       /// skip for the moment uncorrelated
       // int qualityCode = -2;
@@ -146,45 +150,93 @@ void L1ITMuonBarrelPrimitiveProducer::produce( edm::Event& iEvent, const edm::Ev
       const L1ITMu::TriggerPrimitive & dt      = *mbltStation.getDtSegments().at(iDt);
       L1ITMu::TriggerPrimitiveList rpcInMatch  =  mbltStation.getRpcInAssociatedStubs( iDt );
       L1ITMu::TriggerPrimitiveList rpcOutMatch =  mbltStation.getRpcOutAssociatedStubs( iDt );
-      
-      // if(_addHO) { 
-      // 	L1ITMu::TriggerPrimitiveList hoMatch     =  mbltStation.getHOAssociatedStubs( iDt );
-      // 	size_t hoMatchSize     = hoMatch.size();
-      // }	
+      L1ITMu::TriggerPrimitiveList hoMatch;
+      if(_addHO) hoMatch     =  mbltStation.getHOAssociatedStubs( iDt ); 
+
       size_t rpcInMatchSize  = rpcInMatch.size();
       size_t rpcOutMatchSize = rpcOutMatch.size();
+      size_t hoMatchSize = 0;
+      if(_addHO) hoMatchSize = hoMatch.size(); 
       
-      //      std::cout<<"MatchSize (rpcIn, rpcOut, ho) : (" << rpcInMatchSize <<", "<< rpcOutMatchSize << ", " << hoMatchSize <<")"<<  std::endl;
+      if(_addHO)      std::cout<<"MatchSize (rpcIn, rpcOut, ho) : (" << rpcInMatchSize <<", "<< rpcOutMatchSize << ", " << hoMatchSize <<")"<<  std::endl;
+      else   std::cout<<"MatchSize (rpcIn, rpcOut) : (" << rpcInMatchSize <<", "<< rpcOutMatchSize << ")"<<  std::endl;
 
-      if ( rpcInMatchSize && rpcOutMatchSize ) {
+    
+      /// added HO
+      if(_addHO && hoMatchSize) {
+	const L1ITMu::TriggerPrimitive & dt      = *mbltStation.getDtSegments().at(iDt);
 	const L1ITMu::TriggerPrimitive & rpcIn  = *rpcInMatch.front();
 	const L1ITMu::TriggerPrimitive & rpcOut = *rpcOutMatch.front();
+	const L1ITMu::TriggerPrimitive & hoIn   = *hoMatch.front();
 	
-	//if(_hoAdd && hoMatchSize) const L1ITMu::TriggerPrimitive & hoIn   = *hoMatch.front();
-	
-	// only the first is real...
-	// LG try also to reassign BX to single H using RPC BX, e.g. do not ask for DT and RPC to have the same BX
-	if (( dt.getBX() == rpcIn.getBX() && dt.getBX() == rpcOut.getBX() ) || 
-	    (_qualityRemappingMode > 1 && rpcIn.getBX()==rpcOut.getBX() &&  abs(dt.getBX()-rpcIn.getBX()) <= 1)) 
+	if ( rpcInMatchSize && rpcOutMatchSize ) 
 	  {
+	    // only the first is real...
+	    // LG try also to reassign BX to single H using RPC BX, e.g. do not ask for DT and RPC to have the same BX
+	    if (( dt.getBX() == rpcIn.getBX() && dt.getBX() == rpcOut.getBX()  &&  dt.getBX() == hoIn.getBX() ) ||
+		(_qualityRemappingMode > 1 && rpcIn.getBX()==rpcOut.getBX() &&  abs(dt.getBX()-rpcIn.getBX() <= 1) &&  
+		 _qualityHORemappingMode > 1 && abs(hoIn.getBX()-rpcIn.getBX() <= 1)))
+	      {
+		bx = rpcIn.getBX();
+	      }
+	  
+	  } // if ( rpcInMatchSize && rpcOutMatchSize )
+	
+	 else if (rpcInMatchSize) 
+	   {
+	     const L1ITMu::TriggerPrimitive & rpcIn = *rpcInMatch.front();
+
+	     if ( ( dt.getBX() == rpcIn.getBX() && hoIn.getBX()  == rpcIn.getBX() ) || 
+		  ( _qualityRemappingMode > 1 && abs(dt.getBX()-rpcIn.getBX()) <= 1 && 
+		    _qualityHORemappingMode > 1 && abs(hoIn.getBX()-rpcIn.getBX() <= 1))) {
+	       bx = rpcIn.getBX();
+	     }
+	   }
+
+	 else if (rpcOutMatchSize)
+	   {
+	     const L1ITMu::TriggerPrimitive & rpcOut = *rpcOutMatch.front();
+	     if ( ( dt.getBX() == rpcOut.getBX() && hoIn.getBX()  == rpcOut.getBX() ) ||
+		  ( _qualityRemappingMode > 1 && abs(dt.getBX()-rpcOut.getBX()) <= 1 &&
+		    _qualityHORemappingMode > 1 && abs(hoIn.getBX()-rpcOut.getBX() <= 1))) {
+	       bx = rpcOut.getBX();
+	     }
+	   }
+      } // if(_addHO && hoMatchSize)
+      
+      
+      // without HO
+      else if ( rpcInMatchSize && rpcOutMatchSize )
+	{
+	  
+	  const L1ITMu::TriggerPrimitive & rpcIn  = *rpcInMatch.front();
+	  const L1ITMu::TriggerPrimitive & rpcOut = *rpcOutMatch.front();
+	  
+	  // only the first is real...                                                                                                                              
+	  // LG try also to reassign BX to single H using RPC BX, e.g. do not ask for DT and RPC to have the same BX                                                     
+	  if (( dt.getBX() == rpcIn.getBX() && dt.getBX() == rpcOut.getBX() ) ||
+	      (_qualityRemappingMode > 1 && rpcIn.getBX()==rpcOut.getBX() &&  abs(dt.getBX()-rpcIn.getBX()) <= 1))
+	    {
+	      bx = rpcIn.getBX();
+	    }
+	} // if ( rpcInMatchSize && rpcOutMatchSize )
+
+      else if (rpcInMatchSize)
+	{
+	  const L1ITMu::TriggerPrimitive & rpcIn = *rpcInMatch.front();
+	  if ( dt.getBX() == rpcIn.getBX() || (_qualityRemappingMode > 1 && abs(dt.getBX()-rpcIn.getBX()) <= 1)) {
 	    bx = rpcIn.getBX();
 	  }
-      } // if ( rpcInMatchSize && rpcOutMatchSize )
-
-      else if (rpcInMatchSize) {
-	const L1ITMu::TriggerPrimitive & rpcIn = *rpcInMatch.front();
-	if ( dt.getBX() == rpcIn.getBX() || (_qualityRemappingMode > 1 && abs(dt.getBX()-rpcIn.getBX()) <= 1)) {
-	  bx = rpcIn.getBX();
 	}
-      }
 
-      else if (rpcOutMatchSize){
-	const L1ITMu::TriggerPrimitive & rpcOut = *rpcOutMatch.front();
-	if ( dt.getBX() == rpcOut.getBX() || (_qualityRemappingMode>1 && abs(dt.getBX()-rpcOut.getBX()) <= 1)) {
-	  bx = rpcOut.getBX();
+      else if (rpcOutMatchSize)
+	{
+	  const L1ITMu::TriggerPrimitive & rpcOut = *rpcOutMatch.front();
+	  if ( dt.getBX() == rpcOut.getBX() || (_qualityRemappingMode>1 && abs(dt.getBX()-rpcOut.getBX()) <= 1)) {
+	    bx = rpcOut.getBX();
+	  }
 	}
-      }
-      
+
       
       // add primitive here
       int newBx = dt.getBX();
@@ -198,6 +250,7 @@ void L1ITMuonBarrelPrimitiveProducer::produce( edm::Event& iEvent, const edm::Ev
 			       dt.getDTData().bendingAngle, dt.getDTData().qualityCode,
 			       dt.getDTData().Ts2TagCode, dt.getDTData().BxCntCode );
       phiChambVector.push_back( chamb );
+    
     }
     // END OF BX ANALYSIS FOR CORRELATED TRIGGER
     
