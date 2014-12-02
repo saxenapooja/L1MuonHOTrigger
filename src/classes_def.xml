@@ -13,9 +13,11 @@
    <version ClassVersion="11" checksum="3519618344"/>
    <version ClassVersion="12" checksum="1712212034"/>
   </class>
-  <class name="L1ITMu::TriggerPrimitive::HOData"  ClassVersion="12">
+  <class name="L1ITMu::TriggerPrimitive::HOData"  ClassVersion="14">
    <version ClassVersion="11" checksum="2914287096"/>
    <version ClassVersion="12" checksum="108586091"/>
+   <version ClassVersion="13" checksum="3534174800"/>
+   <version ClassVersion="14" checksum="2371742976"/>
   </class>
   <class name="L1ITMu::TriggerPrimitive" ClassVersion="13">
    <version ClassVersion="10" checksum="798990672"/>
@@ -62,8 +64,10 @@
   <class name="L1ITMu::MBLTContainer"/>
   <class name="edm::Wrapper<L1ITMu::MBLTContainer>"/>
   <class name="L1ITMu::MBLTCollection::primitiveAssociation"/>
-  <class name="edm::Wrapper<L1ITMu::MBLTCollection::primitiveAssociation>"  ClassVersion="10">
+  <class name="edm::Wrapper<L1ITMu::MBLTCollection::primitiveAssociation>"  ClassVersion="11">
    <version ClassVersion="10" checksum="2108283157"/>
+   <version ClassVersion="11" checksum="1233678307"/>
+
   </class>
   <class name="std::vector<L1ITMu::MBLTCollection::primitiveAssociation>"/>
   <class name="edm::Wrapper<std::vector<L1ITMu::MBLTCollection::primitiveAssociation> >"/>
