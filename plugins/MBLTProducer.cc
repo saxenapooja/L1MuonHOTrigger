@@ -27,6 +27,7 @@ public:
 private:
   edm::InputTag _trigPrimSrc;
   double        _maxDeltaPhi;
+  double        _maxDeltaPhiForHO;
   bool          _addHO;
   int           _maxStationForHO;
 };
@@ -36,9 +37,11 @@ private:
 MBLTProducer::MBLTProducer( const edm::ParameterSet& iConfig )
   : _trigPrimSrc(iConfig.getParameter<edm::InputTag>("TriggerPrimitiveSrc")),
     _maxDeltaPhi(iConfig.getParameter<double>("MaxDeltaPhi")),
+    _maxDeltaPhiForHO(iConfig.getParameter<double>("MaxDeltaPhiForHO")),    
     _addHO(iConfig.getParameter<bool>("AddHO")),
     _maxStationForHO(iConfig.getParameter<int>("MaxStationForHO"))
 {
+  // typedef std::map<DTChamberId, MBLTCollection> MBLTContainer; 
   produces<L1ITMu::MBLTContainer>().setBranchAlias("MBLTContainer");
 }
 
@@ -71,16 +74,16 @@ void MBLTProducer::produce( edm::Event& iEvent, const edm::EventSetup& iSetup )
     case L1ITMu::TriggerPrimitive::kRPC : {
       if ( tp->detId<RPCDetId>().region() ) continue; // endcap
       int station = tp->detId<RPCDetId>().station();
-      int sector  = tp->detId<RPCDetId>().sector();
-      int wheel   = tp->detId<RPCDetId>().ring();
-      key = DTChamberId( wheel, station, sector );
+      int sector  = tp->detId<RPCDetId>().sector() ;
+      int wheel   = tp->detId<RPCDetId>().ring()   ;
+      key = DTChamberId( wheel, station, sector )  ;
       break;
     }
       
       if (_addHO && tp->detId<DTChamberId>().station() < _maxStationForHO) {
       case L1ITMu::TriggerPrimitive::kHO : {
 	int sector  = tp->detId<HOId>().sector();
-	int wheel   = tp->detId<HOId>().ring(); 
+	int wheel   = tp->detId<HOId>().wheel(); 
 	int station = tp->detId<DTChamberId>().station();
 	key = DTChamberId( wheel, station, sector );
 	break;     
@@ -104,7 +107,7 @@ void MBLTProducer::produce( edm::Event& iEvent, const edm::EventSetup& iSetup )
   
   L1ITMu::MBLTContainer::iterator st    = out->begin();
   L1ITMu::MBLTContainer::iterator stend = out->end();
-  for ( ; st != stend; ++st ) st->second.associate( _maxDeltaPhi );
+  for ( ; st != stend; ++st ) st->second.associate( _maxDeltaPhi, _maxDeltaPhiForHO, _addHO );
 
   iEvent.put(out);
 }
