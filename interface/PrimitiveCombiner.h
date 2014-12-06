@@ -15,40 +15,45 @@
 class DTGeometry;
 
 namespace L1ITMu {
-
   class TriggerPrimitive;
 
+  /// class
   class PrimitiveCombiner {
 
   public :
-    /// a struct useful for resulution info sharing
+    /// a struct useful for resolution info sharing
     struct resolutions {
       double xDt;
       double xRpc;
       double phibDtCorr;
       double phibDtUnCorr;
-      resolutions( const double & xDtResol, const double & xRpcResol,
-		   const double & phibDtCorrResol, const double & phibDtUnCorrResol )
-	:  xDt( xDtResol ), xRpc( xRpcResol ),
-	   phibDtCorr( phibDtCorrResol ), phibDtUnCorr( phibDtUnCorrResol ) {};
+      double xHO;
+
+    resolutions( const double & xDtResol, const double & xRpcResol, const double & phibDtCorrResol, const double & phibDtUnCorrResol ):
+      xDt( xDtResol ), xRpc( xRpcResol ), phibDtCorr( phibDtCorrResol ), phibDtUnCorr( phibDtUnCorrResol ) {};
+
+    resolutions( const double & xDtResol, const double & xRpcResol, const double & phibDtCorrResol, const double & phibDtUnCorrResol, const double & xHOResol ):
+      xDt( xDtResol ), xRpc( xRpcResol ), phibDtCorr( phibDtCorrResol ), phibDtUnCorr( phibDtUnCorrResol ), xHO(xHOResol) {};
     };
+    
 
   public :
     explicit PrimitiveCombiner( const resolutions & res, edm::ESHandle<DTGeometry> & muonGeom );
 
     /// feed the combiner with the available primitives
+    void addHO( const L1ITMu::TriggerPrimitive & prim ); 
     void addDt( const L1ITMu::TriggerPrimitive & prim );
     void addDtHI( const L1ITMu::TriggerPrimitive & prim );
     void addDtHO( const L1ITMu::TriggerPrimitive & prim );
     void addRpcIn( const L1ITMu::TriggerPrimitive & prim );
     void addRpcOut( const L1ITMu::TriggerPrimitive & prim );
-
+ 
     /// do combine the primitives
     void combine();
 
     /// output result variables
-    inline int bx() const { return _bx;};
-    inline int radialAngle() const { return _radialAngle;};
+    inline int bx()           const { return _bx;};
+    inline int radialAngle()  const { return _radialAngle;};
     inline int bendingAngle() const { return _bendingAngle;};
     inline int bendingResol() const { return _bendingResol;};
 
@@ -57,6 +62,7 @@ namespace L1ITMu {
       ret += _dtHO ? 1 : 0;
       ret += _rpcIn ? 1 : 0;
       ret += _rpcOut ? 1 : 0;
+      ret += _hoIn ? 1 : 0;
       return ret > 0 ;
     };
 
@@ -68,58 +74,79 @@ namespace L1ITMu {
       };
     /// FIXME END
 
+
     /// FIXME : Calculates new phiBending resolution
     inline float phiBCombinedResol( const float & resol_xDt,
 				    const float & resol_xRpc,
 				    const float & zDt,
 				    const float & zRpc
 				    )
-      {
-	return sqrt( resol_xRpc*resol_xRpc + resol_xDt*resol_xDt )/abs(zDt-zRpc);
-      };
+    {
+      return sqrt( resol_xRpc * resol_xRpc + resol_xDt * resol_xDt )/abs(zDt-zRpc);
+    };
     /// FIXME END
 
-  private :
+    inline float phiBCombinedResol( const float & resol_xDt,
+				    const float & zDt
+				    )
+    {
+      return sqrt( resol_xDt * resol_xDt )/abs(zDt);
+    };
+    
 
+  private :
     /// a struct for internal usage: store results
     struct results {
       double radialAngle;
       double bendingAngle;
       double bendingResol;
-      results() : radialAngle(0), bendingAngle(0), bendingResol(0) {};
+    results() : radialAngle(0), bendingAngle(0), bendingResol(0) {};
     };
-
-
+    
+    
     /// Calculates new phiBending, check how to use weights
     results combineDt( const L1ITMu::TriggerPrimitive * dt,
 		       const L1ITMu::TriggerPrimitive * rpc );
 
-    results dummyCombineDt( const L1ITMu::TriggerPrimitive * dt);
+    results combineDtHo( const L1ITMu::TriggerPrimitive * dt,
+		       const L1ITMu::TriggerPrimitive * ho );
 
+    results combineRpcHo( const L1ITMu::TriggerPrimitive * rpc,
+		       const L1ITMu::TriggerPrimitive * ho );
+
+    results combineRpcHo( const L1ITMu::TriggerPrimitive * rpcIn,
+			  const L1ITMu::TriggerPrimitive * rpcOut,
+			  const L1ITMu::TriggerPrimitive * ho );
+    
+    results dummyCombineDt( const L1ITMu::TriggerPrimitive * dt);
+    
     /// Calculates new phiBending, check how to use weights
     results combineDtRpc( const L1ITMu::TriggerPrimitive * dt,
 			  const L1ITMu::TriggerPrimitive * rpc );
+    
+    /// Calculates new phiBending, check how to use weights
+    results combineRpcRpc( const L1ITMu::TriggerPrimitive * rpc1,
+			   const L1ITMu::TriggerPrimitive * rpc2 );
+    
+    
+    int radialAngleFromGlobalPhi( const L1ITMu::TriggerPrimitive * rpc );
+    
 
-  /// Calculates new phiBending, check how to use weights
-   results combineRpcRpc( const L1ITMu::TriggerPrimitive * rpc1,
-                          const L1ITMu::TriggerPrimitive * rpc2 );
- 
- 
-     int radialAngleFromGlobalPhi( const L1ITMu::TriggerPrimitive * rpc );
   private :
-    resolutions _resol;
-    edm::ESHandle<DTGeometry> _muonGeom;
-
-    int _bx;
-    int _radialAngle;
-    int _bendingAngle;
-    int _bendingResol;
-
-    const L1ITMu::TriggerPrimitive * _dtHI;
-    const L1ITMu::TriggerPrimitive * _dtHO;
-    const L1ITMu::TriggerPrimitive * _rpcIn;
-    const L1ITMu::TriggerPrimitive * _rpcOut;
-
+   resolutions _resol;
+   edm::ESHandle<DTGeometry> _muonGeom;
+   
+   int _bx;
+   int _radialAngle;
+   int _bendingAngle;
+   int _bendingResol;
+   
+   const L1ITMu::TriggerPrimitive * _dtHI;
+   const L1ITMu::TriggerPrimitive * _dtHO;
+   const L1ITMu::TriggerPrimitive * _rpcIn;
+   const L1ITMu::TriggerPrimitive * _rpcOut;
+   const L1ITMu::TriggerPrimitive * _hoIn;
+   
   };
 }
 
