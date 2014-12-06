@@ -243,7 +243,7 @@ L1ITMu::PrimitiveCombiner::combineDtHo( const L1ITMu::TriggerPrimitive * dt,
   // const DTChamber* chamb1 = _muonGeom->chamber( dt1->detId<DTChamberId>() );
   // int station = rpc->detId<RPCDetId>().station();
   int sector  = ho->detId<HOId>().sector();
-  int wheel   = ho->detId<HOId>().ring();
+  int wheel   = ho->detId<HOId>().wheel();
   int station = 1; //combirning only with one station
 
   const DTChamber* chamb2 = _muonGeom->chamber( DTChamberId( wheel, station, sector ) );
@@ -433,7 +433,7 @@ L1ITMu::PrimitiveCombiner::combineRpcHo( const L1ITMu::TriggerPrimitive * rpc,
 
   //point-II
   sector  = ho->detId<HOId>().sector();
-  wheel   = ho->detId<HOId>().ring();
+  wheel   = ho->detId<HOId>().wheel();
   station = 1; //combirning only with one station
 
   const DTChamber* chamb2 = _muonGeom->chamber( DTChamberId( wheel, station, sector ) );
