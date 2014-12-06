@@ -16,8 +16,10 @@ process = cms.Process('L1')
 #globalTag = "START62_V1"
 #globalTag = "START71_V8"
 #globalTag = "PHYS14_25_V1::All"
-globalTag = "MCRUN2_71_V1::All"
+#globalTag = "MCRUN2_71_V1::All"
 #globalTag = "POSTLS170_V3::All"   
+globalTag = "MCRUN2_72_V3A::All"
+
 
 # The eta range for GEN muon production
 # the present DTTF goes up to |eta|<1.04, the BarrelTF will go roughly up to
@@ -95,7 +97,7 @@ process.noisesfromprep = cms.ESSource("PoolDBESSource",
                                       timetype = cms.string('runnumber'),
                                       toGet = cms.VPSet(cms.PSet(
 			record = cms.string('RPCStripNoisesRcd'),
-#			label = cms.untracked.string("noisesfromprep"),
+			label = cms.untracked.string("noisesfromprep"),
 			# tag = cms.string('RPC_Phase2UpgradeStudies_mc')
 			# tag = cms.string('RPC_Eff2012_PhaseII_mc')
 			# tag = cms.string('RPC_Eff2012_256Strips_mc') 
@@ -105,24 +107,6 @@ process.noisesfromprep = cms.ESSource("PoolDBESSource",
                                                         )
                                       )
 process.es_prefer_noisesfromprep=cms.ESPrefer("PoolDBESSource", "noisesfromprep")
-
-#process.clsfromprep = cms.ESSource("PoolDBESSource",
-#    # connect = cms.string('sqlite_file:RPCClusterSize__upscope_mc_v1.db'),
-#    connect = cms.string('sqlite_file:RPCClusterSize_PhaseII_mc.db'),
-#    DBParameters = cms.PSet(
-#        messageLevel = cms.untracked.int32(0),
-#        authenticationPath = cms.untracked.string('.'),
-#        authenticationMethod = cms.untracked.uint32(1)
-#        ),
-#    timetype = cms.string('runnumber'),
-#    toGet = cms.VPSet(cms.PSet(
-#        record = cms.string('RPCClusterSizeRcd'),
-#        # tag = cms.string('RPCClusterSize__upscope_mc_v1')
-#        tag = cms.string('RPCClusterSize_PhaseII_mc')
-#        )
-#    )
-#)
-#process.es_prefer_clsfromprep=cms.ESPrefer("PoolDBESSource" , "clsfromprep")
 
 
 if muonCharge > 0 :
@@ -140,7 +124,6 @@ process.configurationMetadata = cms.untracked.PSet(
 	annotation = cms.untracked.string(configTag),
 	name = cms.untracked.string('PyReleaseValidation')
 	)
-
 
 # Output definition
 process.FEVTDEBUGoutput = cms.OutputModule("PoolOutputModule",
@@ -163,11 +146,11 @@ process.FEVTDEBUGoutput = cms.OutputModule("PoolOutputModule",
 process.genstepfilter.triggerConditions=cms.vstring("generation_step")
 process.mix.digitizers =  cms.PSet(process.theDigitizersValid)
 from Configuration.AlCa.GlobalTag import GlobalTag
-process.GlobalTag = GlobalTag(process.GlobalTag, globalTag+'::All', '')
+#process.GlobalTag = GlobalTag(process.GlobalTag, globalTag+'::All', '')
 
 # http://cmslxr.fnal.gov/lxr/source/Configuration/AlCa/python/autoCond.py?view=markup
 from Configuration.AlCa.autoCond import autoCond
-#process.GlobalTag.globaltag = autoCond['run2_design'] #PRE_LS172_V15::All
+process.GlobalTag.globaltag = autoCond['run2_mc'] #PRE_LS172_V15::All
 
 process.generator = cms.EDProducer("FlatRandomPtGunProducer",
   PGunParameters = cms.PSet(
@@ -181,7 +164,7 @@ process.generator = cms.EDProducer("FlatRandomPtGunProducer",
 	),
        Verbosity = cms.untracked.int32(0),
        psethack = cms.string('single mu pt ' + str(minPt) + 'to' + str(maxPt)),
-       AddAntiParticle = cms.bool(False),  #need *single* muons dammit
+       AddAntiParticle = cms.bool(False), 
        firstRun = cms.untracked.uint32(1)
 )
 
@@ -199,26 +182,28 @@ process.endjob_step = cms.EndPath(process.endOfProcess)
 process.FEVTDEBUGoutput_step = cms.EndPath(process.FEVTDEBUGoutput)
 
 
-#outCommands = cms.untracked.vstring('drop *')
-#outCommands.append('keep *_simMuonDTDigis_*_*')
-#outCommands.append('keep *_simMuonRPCDigis_*_*')
+outCommands = cms.untracked.vstring('drop *')
+outCommands.append('keep *_simMuonDTDigis_*_*')
+outCommands.append('keep *_simMuonRPCDigis_*_*')
 #outCommands.append('keep *_simMuonCSCDigis_*_*')
-#outCommands.append('keep *_genParticles_*_*')
+outCommands.append('keep HOData*_simHcalDigis_*_*')
+outCommands.append('keep *_genParticles_*_*')
 #outCommands.append('keep *_simCsctfTrackDigis_*_*')
-#outCommands.append('keep *_simDttfDigis_*_*')
-#outCommands.append('keep *_simGmtDigis_*_*')
-#outCommands.append('keep *_simRpcTriggerDigis_*_*')
-#outCommands.append('keep *_simDtTriggerPrimitiveDigis_*_*')
+outCommands.append('keep *_simDttfDigis_*_*')
+outCommands.append('keep *_simGmtDigis_*_*')
+outCommands.append('keep *_simRpcTriggerDigis_*_*')
+outCommands.append('keep *_simDtTriggerPrimitiveDigis_*_*')
 #outCommands.append('keep *_simCscTriggerPrimitiveDigis_*_*')
-#outCommands.append('keep *_L1ITMuTriggerPrimitives_*_*')
-#outCommands.append('keep *_MBLTProducer_*_*')
-#outCommands.append('keep *_MBTracksProducer_*_*')
-#outCommands.append('keep *_L1ITMuonBarrelPrimitiveProducer_*_*')
-#outCommands.append('keep *_*Converter_*_*')
-#outCommands.append('keep *_*Matcher_*_*')
-#
-#process.FEVTDEBUGoutput.outputCommands = outCommands
-#
+outCommands.append('keep *_L1ITMuTriggerPrimitives_*_*')
+outCommands.append('keep *_MBLTProducer_*_*')
+outCommands.append('keep *_MBTracksProducer_*_*')
+outCommands.append('keep *_L1ITMuonBarrelPrimitiveProducer_*_*')
+outCommands.append('keep *_*Converter_*_*')
+outCommands.append('keep *_*Matcher_*_*')
+
+process.FEVTDEBUGoutput.outputCommands = outCommands
+
+
 # Schedule definition
 process.schedule = cms.Schedule(process.generation_step,
 				process.genfiltersummary_step,
